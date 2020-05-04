@@ -1,0 +1,22 @@
+{
+  /* Add preview option to completeopt */
+  "suggest.enablePreview": true,
+  /* Use Ale for displaying diagnostics in vim. */
+  // diagnostic-languageserver
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "email": "languagetool",
+    "markdown": [ "write-good", "markdownlint" ],
+    "sh": "shellcheck",
+    "elixir": ["mix_credo", "mix_credo_compile"],
+    "eelixir": ["mix_credo", "mix_credo_compile"],
+    "php": "phpcs"
+  },
+  /* "diagnostic.displayByAle": true, */
+  /* From 'coc-neco' readme: this source invoke vim function that could
+  * be quite slow, so make sure your suggest.timeout is not too low,
+  * otherwise it may timeout.*/
+  "suggest.timeout": 5000
+}
+
+/* vim:set filetype=jsonc: */

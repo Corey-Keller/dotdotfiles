@@ -1,0 +1,72 @@
+# ============================================================
+# 'Asyncomplete' Specific Plugins
+# Name: plugins_asyncomplete.toml
+# Author: Corey Keller
+# Web: https://github.com/corey-keller/FillInLater
+# Modification Date: 2020-01-25
+# License: Mozilla Public License, Version 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+# ============================================================
+
+# asyncomplete itself
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+if = '''g:UserConfig.Completion ==? 'asyncomplete' '''
+on_event = 'InsertEnter'
+lazy = 1
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Language Server Protocol
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Async Language Server Protocol plugin
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+if = '''dein#tap('asyncomplete.vim')'''
+depends = ['async.vim']
+
+# LSP autocompletion source for asyncomplete.vim
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+if = '''dein#tap('asyncomplete.vim') '''
+depends = ['asyncomplete.vim', 'vim-lsp']
+
+# Necessary for Language Server Protocol (LSP) support
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+if = '''dein#tap('asyncomplete.vim')'''
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Misc Sources
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Buffer autocompletion source for asyncomplete.vim
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim'
+if = '''dein#tap('asyncomplete.vim')'''
+
+# Filename completion source for asyncomplete.vim
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-file.vim'
+if = '''dein#tap('asyncomplete.vim')'''
+
+# Autocompletion source for asyncomplete.vim via necosyntax
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necosyntax.vim'
+if = '''dein#tap('asyncomplete.vim')'''
+on_source = ['neco-syntax']
+depends = ['asyncomplete.vim', 'neco-syntax']
+
+# Autocompletion source for asyncomplete.vim via neco-vim
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necovim.vim'
+if = '''dein#tap('asyncomplete.vim')'''
+on_source = ['neco-vim']
+depends = ['asyncomplete.vim', 'neco-vim']
+
+# Omni completion source for asyncomplete.vim
+[[plugins]]
+repo = 'yami-beta/asyncomplete-omni.vim'
+if = '''dein#tap('asyncomplete.vim')'''
+

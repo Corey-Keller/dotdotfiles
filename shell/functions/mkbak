@@ -1,0 +1,25 @@
+# =========================================================================
+# File: mkbak
+# Author: Corey Keller
+# Description: Makes a backup of files (with ISO 8601 datetime stamps) in
+# the same directory as the file
+# Repository: https://github.com/Corey-Keller/dotdotfiles
+# Last Modified: 2020-03-09
+# License: Mozilla Public License 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# =========================================================================
+mkbak() {
+	for file in "$@"; do
+		iso8601BackupFormat=backup_$(date -u +"%Y-%m-%dT%H.%M.%SZ")
+		backupFileName=""
+		case $(basename "$file") in
+			.*)  backupFileName="$file.$iso8601BackupFormat";;
+			*.*) backupFileName="${file%.*}.$iso8601BackupFormat.${file##*.}";;
+			*)   backupFileName="$file.$iso8601BackupFormat";;
+		esac
+		cp -ai --dereference "$file" "$backupFileName"
+	done
+	unset iso8601BackupFormat backupFileName
+}

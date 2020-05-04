@@ -1,0 +1,31 @@
+##This file is for zsh specific environment settings
+(($VERBOSE_ZSH_STARTUP)) && echo 'loading $ZDOTDIR/zshenv'
+(($VERBOSE_ZSH_STARTUP)) && echo 'loading $HOME/.dotfiles/shell/env'
+source $HOME/.dotfiles/shell/env.sh
+(($VERBOSE_ZSH_STARTUP)) && echo 'finished loading $HOME/.dotfiles/shell/env.sh'
+
+# skip the "autoload -U compinit && compinit" in /etc/zsh/zshrc
+skip_global_compinit=1
+
+#FILE LOCATIONS
+[[ -z "$ZDOTDIR" ]] && export ZDOTDIR="${DOTFILESDIR}/shell/zsh"
+
+#ZSH SPECIFIC EXPORTS
+export HISTFILE=$HOME/.zhistory
+export SAVEHIST=$HISTSIZE
+export ZSH_CHOSEN_THEME="git-prompt"
+#local dotfilesFunctionDir="$DOTFILESDIR/shell/functions"
+# ${fpath[(ie)$dotfilesFunctionDir ]} means the index # in fpath that matches $dotfilesFunctionDir
+# (http://zsh.sourceforge.net/Doc/Release/Parameters.html#Subscript-Flags)
+#[[ ${fpath[(ie)$dotfilesFunctionDir ]} -gt ${#fpath} ]] && fpath=($dotfilesFunctionDir $fpath)
+
+# Function to determine the need of a zcompile. If the .zwc file
+# does not exist, or the base file is newer, we need to compile.
+# These jobs are asynchronous, and will not impact the interactive shell
+#zcompare() {
+#  if [[ -s ${1} && ( ! -s ${1}.zwc || ${1} -nt ${1}.zwc) ]]; then
+#      zcompile ${1}
+#  fi
+#}
+
+(($VERBOSE_ZSH_STARTUP)) && echo 'finished loading $HOME/.zshenv'

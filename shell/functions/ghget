@@ -1,0 +1,24 @@
+# =========================================================================
+# File: ghget
+# Author: Corey Keller
+# Description: Grab and clone a GitHub repo into a folder underneath the
+# username
+# Repository: https://github.com/Corey-Keller/dotdotfiles
+# Last Modified: 2020-03-09
+# License: Mozilla Public License 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# =========================================================================
+ghget() {
+	ghgetCurrDir=$PWD
+	# set $GHDIR if it is unset or null
+	${GHDIR:=$HOME/src/github.com}
+	GHUSER=$(echo $@ | tr "/" " " | awk '{print $1}')
+	GHREPO=$(echo $@ | tr "/" " " | awk '{print $2}')
+	mkdir -p "$GHDIR/$GHUSER" && cd "$GHDIR/$GHUSER" &&
+	git clone https://github.com/$GHUSER/$GHREPO.git &&
+	cd "$ghgetCurrDir" && unset ghgetCurrDir GHUSER GHREPO
+	#gitup -a "$GHDIR/$GHUSER/$GHREPO"
+}
+

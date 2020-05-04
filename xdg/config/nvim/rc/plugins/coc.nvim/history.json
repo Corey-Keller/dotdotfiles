@@ -1,0 +1,45 @@
+{
+  "lists": {
+    "%2Fc%2FUsers%2Fck050750": [
+      "diagn",
+      "sou",
+      "ex"
+    ]
+  },
+  "sources": {
+    "%2Fc%2FUsers%2Fck050750": [
+      "sni",
+      "snip-",
+      "ul",
+      "ls"
+    ],
+    "%2Fmnt%2Fc%2FUsers%2Fck050750%2F": {
+      "dotfiles%2Fxdg%2Fconfig%2Fnvim%2Frc": [
+        "sou"
+      ]
+    }
+  },
+  "extensions": {
+    "%2Fc%2FUsers%2Fck050750": [
+      "ult",
+      "diag"
+    ],
+    "%2Fmnt%2Fc%2FUsers%2Fck050750%2F": {
+      "dotfiles%2Fxdg%2Fconfig%2Fnvim%2Frc": [
+        "pai",
+        "ya"
+      ]
+    }
+  },
+  "snippets": {
+    "%2Fc%2FUsers%2Fck050750": [
+      "if",
+      "func"
+    ],
+    "%2Fmnt%2Fc%2FUsers%2Fck050750%2F": {
+      "dotfiles%2Fxdg%2Fconfig%2Fnvim%2Frc": [
+        "get"
+      ]
+    }
+  }
+}

@@ -1,0 +1,436 @@
+# =========================================================================
+# File: plugins_lazy.toml
+# Author: Corey Keller
+# Description: Lazily loaded plugins
+# Repository: https://github.com/Corey-Keller/dotdotfiles
+# Last Modified: 2020-02-13
+# License: Mozilla Public License 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# =========================================================================
+
+# ============================================================
+# Completion #{{{
+# ============================================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Completion Sources #{{{
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Syntax source for neocomplete/deoplete/ncm/asyncomplete
+[[plugins]]
+repo = 'shougo/neco-syntax'
+on_source = ['deoplete.nvim', 'asyncomplete.vim']
+
+# The vim source for neocomplete/deoplete/ncm/asyncomplete
+[[plugins]]
+repo = 'shougo/neco-vim'
+on_ft = 'vim'
+on_source = ['deoplete.nvim', 'asyncomplete.vim', 'coc.nvim']
+#}}}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# deoplete specific plugins #{{{
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[plugins]]
+repo = 'shougo/deoplete.nvim'
+if = '''g:UserConfig.Completion ==? 'deoplete' '''
+on_event = 'InsertEnter'
+hook_post_update = '''
+if has('nvim')
+	call dein#remote_plugins()
+endif
+'''
+#}}}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# coc specific plugins #{{{
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+if = '''g:UserConfig.Completion ==? 'coc' '''
+on_event = 'InsertEnter'
+#}}}
+#}}}
+
+# ============================================================
+# Fuzzy Finder #{{{
+# ============================================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LeaderF #{{{
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[plugins]]
+repo = 'yggdroot/leaderf'
+on_event = 'VimEnter'
+if = '''g:UserConfig.Finder ==? 'leaderf' '''
+hook_post_update = '''
+if has('win64')||(has('win32')
+  .\install.bat
+else
+  ./install.sh
+endif
+'''
+on_map = { #{{{
+	n = ['<Leader>:', '<Leader>H', '<Leader>fD', '<Leader>fL',
+	'<Leader>fT', '<Leader>fb', '<Leader>fc', '<Leader>fd', '<Leader>fh',
+	'<Leader>fl', '<Leader>fr', '<Leader>ft', '<Leader>fv', '<Leader>f~',
+	'<Leader>h', '<Leader>t', '<Leader>ff', '<Leader>b']
+} #}}}
+#}}}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# fzf #{{{
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+on_event = 'VimEnter'
+if = '''(g:UserConfig.Finder ==? 'fzf' && executable('fzf'))'''
+on_map = { #{{{
+	n = ['<leader>:', '<leader>C', '<leader>F', '<leader>H', '<leader>T',
+	'<leader>b', '<leader>fD', '<leader>fT', '<leader>fb', '<leader>fc',
+	'<leader>fd', '<leader>ff', '<leader>fh', '<leader>fr', '<leader>ft',
+	'<leader>fv', '<leader>f~', '<leader>h']
+} #}}}
+#}}}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# vim-clap #{{{
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[plugins]]
+repo = 'liuchengxu/vim-clap'
+on_event = 'VimEnter'
+if = '''g:UserConfig.Finder ==? 'vim-clap' '''
+hook_post_update = ':Clap install-binary!'
+#}}}
+#}}}
+
+# ============================================================
+# Tags #{{{
+# ============================================================
+# Automatic tag generation
+# [[plugins]]
+# repo = 'ludovicchabant/vim-gutentags'
+# if = '''v:version >= 800 &&(executable('ctags')||executable('global'))'''
+# on_event = 'VimEnter'
+#
+# # Seamless database switching
+# [[plugins]]
+# repo = 'skywind3000/gutentags_plus'
+# if = '''dein#tap('vim-gutentags')'''
+# on_cmd = ['GscopeAdd','GscopeFind','GscopeKill']
+# on_map = { #{{{
+# 	n = ['<leader>cs', '<leader>cg', '<leader>cc', '<leader>ct',
+# 	'<leader>ce', '<leader>cf', '<leader>ci', '<leader>cd', '<leader>ca',
+# 	'<leader>cz', '<leader>ck']
+# } #}}}
+
+# [[plugins]]
+# repo = 'jsfaint/gen_tags.vim'
+# if = '''v:version >= 800 &&(executable('ctags')||executable('global'))'''
+# on_event = 'VimEnter'
+#}}}
+
+# ============================================================
+# Programming #{{{
+# ============================================================
+# Easily (un)comment lines
+# [[plugins]]
+# repo = 'tpope/vim-commentary'
+# on_cmd = ['DoCommentLine', 'DoUncommentLine']
+# on_map = { #{{{
+# 	n = ['gc', 'gcu', 'gcc', '<Plug>ChangeCommentary',
+# 	'<Plug>CommentaryLine', '<Plug>Commentary'],
+# 	o = ['gc', '<Plug>Commentary'],
+# 	x = ['gc', '<Plug>Commentary']
+# } #}}}
+
+# Easily (un)comment lines
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+on_cmd = ['DoCommentLine', 'DoUncommentLine']
+on_map = { #{{{
+	n = ['<Plug>TComment_Comment', '<Plug>TComment_Commentb',
+	'<Plug>TComment_Commentc', '<Plug>TComment_Commentl',
+	'<Plug>TComment_Uncomment', '<Plug>TComment_Uncommentb',
+	'<Plug>TComment_Uncommentc', '<Plug>TComment_gC', '<Plug>TComment_gc',
+	'<Plug>TComment_gc1c', '<Plug>TComment_gc2c', '<Plug>TComment_gc3c',
+	'<Plug>TComment_gc4c', '<Plug>TComment_gc5c', '<Plug>TComment_gc6c',
+	'<Plug>TComment_gc7c', '<Plug>TComment_gc8c', '<Plug>TComment_gc9c',
+	'<Plug>TComment_gcb', '<Plug>TComment_gcc', 'g<', 'g<b', 'g<c', 'g>',
+	'g>b', 'g>c', 'gc', 'gc1', 'gc1c', 'gc2', 'gc2c', 'gc3', 'gc3c', 'gc4',
+	'gc4c', 'gc5', 'gc5c', 'gc6', 'gc6c', 'gc7', 'gc7c', 'gc8', 'gc8c',
+	'gc9', 'gc9c', 'gcb', 'gcc'],
+	no = ['gC','<C-_>1', '<C-_>2', '<C-_>3', '<C-_>4', '<C-_>5', '<C-_>6',
+	'<C-_>7', '<C-_>8', '<C-_>9', '<C-_><C-_>', '<Plug>TComment_<C-_>1',
+	'<Plug>TComment_<C-_>2', '<Plug>TComment_<C-_>3',
+	'<Plug>TComment_<C-_>4', '<Plug>TComment_<C-_>5',
+	'<Plug>TComment_<C-_>6', '<Plug>TComment_<C-_>7',
+	'<Plug>TComment_<C-_>8', '<Plug>TComment_<C-_>9',
+	'<Plug>TComment_<C-_><C-_>'],
+	nos = ['<Plug>TComment_<Space>__', '<Space>__'],
+	nov = ['<C-_><Space>', '<C-_>a', '<C-_>b', '<C-_>ca', '<C-_>cc',
+	'<C-_>i', '<C-_>n', '<C-_>p', '<C-_>r', '<C-_>s',
+	'<Plug>TComment_<C-_><Space>', '<Plug>TComment_<C-_>a',
+	'<Plug>TComment_<C-_>b', '<Plug>TComment_<C-_>ca',
+	'<Plug>TComment_<C-_>cc', '<Plug>TComment_<C-_>i',
+	'<Plug>TComment_<C-_>n', '<Plug>TComment_<C-_>p',
+	'<Plug>TComment_<C-_>r', '<Plug>TComment_<C-_>s',
+	'<Plug>TComment_<Space>_<Space>', '<Plug>TComment_<Space>_a',
+	'<Plug>TComment_<Space>_b', '<Plug>TComment_<Space>_n',
+	'<Plug>TComment_<Space>_p', '<Plug>TComment_<Space>_r',
+	'<Plug>TComment_<Space>_s', '<Plug>TComment_ic', '<Space>_<Space>',
+	'<Space>_a', '<Space>_b', '<Space>_n', '<Space>_p', '<Space>_r',
+	'<Space>_s'],
+	o = ['ic'],
+	v = ['<C-_>1', '<C-_>2', '<C-_>3', '<C-_>4', '<C-_>5', '<C-_>6',
+	'<C-_>7', '<C-_>8', '<C-_>9', '<C-_><C-_>', '<Plug>TComment_<C-_>1',
+	'<Plug>TComment_<C-_>2', '<Plug>TComment_<C-_>3',
+	'<Plug>TComment_<C-_>4', '<Plug>TComment_<C-_>5',
+	'<Plug>TComment_<C-_>6', '<Plug>TComment_<C-_>7',
+	'<Plug>TComment_<C-_>8', '<Plug>TComment_<C-_>9',
+	'<Plug>TComment_<C-_><C-_>', 'ic'],
+	x = ['<Plug>TComment_<Space>__', '<Plug>TComment_<Space>_i',
+	'<Plug>TComment_Comment', '<Plug>TComment_Uncomment',
+	'<Plug>TComment_gc', '<Space>__', '<Space>_i', 'g<', 'g>', 'gc']
+} #}}}
+
+# Make vim plugin making easier
+[[plugins]]
+repo = 'tpope/vim-scriptease'
+on_map = { #{{{
+	nx = ['g!','g=','<Plug>ScripteaseFilter'],
+	n = ['g!!','g==','zS','<Plug>ScripteaseSynnames']
+} #}}}
+
+[[plugins]]
+repo = 'sirver/ultisnips'
+on_event = 'InsertEnter'
+on_source = ['coc.nvim']
+
+# Add a collection of snippets
+[[plugins]]
+repo = 'honza/vim-snippets'
+on_source = ['ultisnips', 'coc.nvim']
+#}}}
+
+# ============================================================
+# Vim Improvements #{{{
+# ============================================================
+# Improved incremental searching
+# [[plugins]]
+# repo = 'haya14busa/is.vim'
+# on_map = { #{{{
+# 	nov = ['#', '*', 'g#', 'g*', '<Plug>(is-g#)',
+# 	'<Plug>(is-g*)', '<Plug>(is-#)', '<Plug>(is-*)', '<Plug>(is-N)',
+# 	'<Plug>(is-n)', '<Plug>(_is-g#)', '<Plug>(_is-g*)', '<Plug>(_is-#)',
+# 	'<Plug>(_is-*)', '<Plug>(_is-N)', '<Plug>(_is-n)', '<Plug>(is-nohl-3)',
+# 	'<Plug>(is-nohl)', '<Plug>(is-nohl-2)', '<Plug>(is-nohl-1)',
+# 	'<Plug>(is-scroll-b)', '<Plug>(is-scroll-f)']
+# } #}}}
+
+# Jump to any location specified by two characters.
+# [[plugins]]
+# repo = 'justinmk/vim-sneak'
+# on_map = { #{{{
+# 	n = [',', ';', 'S', 's', '<Plug>SneakBackward', '<Plug>SneakForward',
+# 	'<Plug>SneakLabel_S', '<Plug>SneakLabel_s', '<Plug>SneakNext',
+# 	'<Plug>SneakPrevious', '<Plug>Sneak_,', '<Plug>Sneak_;',
+# 	'<Plug>Sneak_F', '<Plug>Sneak_S', '<Plug>Sneak_T', '<Plug>Sneak_f',
+# 	'<Plug>Sneak_s', '<Plug>Sneak_t'],
+# 	o = [',', ';', 'Z', 'z', '<Plug>SneakLabel_S', '<Plug>SneakLabel_s',
+# 	'<Plug>SneakNext', '<Plug>SneakPrevious', '<Plug>SneakRepeat',
+# 	'<Plug>Sneak_,', '<Plug>Sneak_;', '<Plug>Sneak_F', '<Plug>Sneak_S',
+# 	'<Plug>Sneak_T', '<Plug>Sneak_f', '<Plug>Sneak_s', '<Plug>Sneak_t'],
+# 	x = [',', ';', 'Z', 's', '<Plug>SneakLabel_S', '<Plug>SneakLabel_s',
+# 	'<Plug>SneakNext', '<Plug>SneakPrevious', '<Plug>Sneak_,',
+# 	'<Plug>Sneak_;', '<Plug>Sneak_F', '<Plug>Sneak_S', '<Plug>Sneak_T',
+# 	'<Plug>Sneak_f', '<Plug>Sneak_s', '<Plug>Sneak_t',
+# 	'<Plug>VSneakBackward', '<Plug>VSneakForward', '<Plug>VSneakNext',
+# 	'<Plug>VSneakPrevious']
+# } #}}}
+
+# Helpers for UNIX
+[[plugins]]
+repo = 'tpope/vim-eunuch'
+if = '''has('unix')'''
+on_cmd = ['Cfind', 'Chmod', 'Clocate', 'Delete', 'Lfind', 'Llocate',
+'Mkdir', 'Mkdir!', 'Mkdir', 'Move', 'Remove', 'Rename', 'SudoEdit',
+'SudoWrite', 'Unlink', 'W', 'Wall']
+
+# Easily jump to a location
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_map = { #{{{
+	nov = ['<leader><leader>', '/'],
+	nx = ['s'],
+	o = ['z']
+} #}}}
+
+# Pairs of handy bracket mappings
+[[plugins]]
+repo = 'tpope/vim-unimpaired'
+on_map = { #{{{
+	n = ['<P', '<Plug>unimpairedAFirst', '<Plug>unimpairedALast',
+	'<Plug>unimpairedANext', '<Plug>unimpairedAPrevious',
+	'<Plug>unimpairedBFirst', '<Plug>unimpairedBLast',
+	'<Plug>unimpairedBNext', '<Plug>unimpairedBPrevious',
+	'<Plug>unimpairedBlankDown', '<Plug>unimpairedBlankUp',
+	'<Plug>unimpairedContextNext', '<Plug>unimpairedContextPrevious',
+	'<Plug>unimpairedDirectoryNext', '<Plug>unimpairedDirectoryPrevious',
+	'<Plug>unimpairedLFirst', '<Plug>unimpairedLLast',
+	'<Plug>unimpairedLNFile', '<Plug>unimpairedLNext',
+	'<Plug>unimpairedLPFile', '<Plug>unimpairedLPrevious',
+	'<Plug>unimpairedMoveDown', '<Plug>unimpairedMoveUp',
+	'<Plug>unimpairedPaste', '<Plug>unimpairedPutAbove',
+	'<Plug>unimpairedPutBelow', '<Plug>unimpairedQFirst',
+	'<Plug>unimpairedQLast', '<Plug>unimpairedQNFile',
+	'<Plug>unimpairedQNext', '<Plug>unimpairedQPFile',
+	'<Plug>unimpairedQPrevious', '<Plug>unimpairedTFirst',
+	'<Plug>unimpairedTLast', '<Plug>unimpairedTNext',
+	'<Plug>unimpairedTPNext', '<Plug>unimpairedTPPrevious',
+	'<Plug>unimpairedTPrevious', '<Plug>unimpaired_line_string_decode',
+	'<Plug>unimpaired_line_string_encode',
+	'<Plug>unimpaired_line_url_decode', '<Plug>unimpaired_line_url_encode',
+	'<Plug>unimpaired_line_xml_decode', '<Plug>unimpaired_line_xml_encode',
+	'<Plug>unimpaired_string_decode', '<Plug>unimpaired_string_encode',
+	'<Plug>unimpaired_url_decode', '<Plug>unimpaired_url_encode',
+	'<Plug>unimpaired_xml_decode', '<Plug>unimpaired_xml_encode', '<p',
+	'=P', '=p', '>P', '>p', '[<C-L>', '[<C-Q>', '[<C-T>', '[<Space>', '[A',
+	'[B', '[L', '[P', '[Q', '[T', '[a', '[b', '[e', '[f', '[l', '[n',
+	'[o+', '[o-', '[o_', '[ob', '[oc', '[od', '[oh', '[oi', '[ol', '[on',
+	'[op', '[or', '[os', '[ou', '[ov', '[ow', '[ox', '[p', '[q', '[t',
+	'[u', '[uu', '[x', '[xx', '[y', '[yy', ']<C-L>', ']<C-Q>', ']<C-T>',
+	']<Space>', ']A', ']B', ']L', ']P', ']Q', ']T', ']a', ']b', ']e', ']f',
+	']l', ']n', ']o+', ']o-', ']o_', ']ob', ']oc', ']od', ']oh', ']oi',
+	']ol', ']on', ']op', ']or', ']os', ']ou', ']ov', ']ow', ']ox', ']p',
+	']q', ']t', ']u', ']uu', ']x', ']xx', ']y', ']yy', 'yo+', 'yo-', 'yo_',
+	'yob', 'yoc', 'yod', 'yoh', 'yoi', 'yol', 'yon', 'yop', 'yor', 'yos',
+	'you', 'yov', 'yow', 'yox'],
+	o = ['<Plug>unimpairedContextNext', '<Plug>unimpairedContextPrevious',
+	'[n', ']n'],
+	x = ['<Plug>unimpairedContextNext', '<Plug>unimpairedContextPrevious',
+	'<Plug>unimpaired_string_decode', '<Plug>unimpaired_string_encode',
+	'<Plug>unimpaired_url_decode', '<Plug>unimpaired_url_encode',
+	'<Plug>unimpaired_xml_decode', '<Plug>unimpaired_xml_encode', '[e',
+	'[n', '[u', '[x', '[y', ']e', ']n', ']u', ']x', ']y'],
+	nov = ['<Plug>unimpairedMoveSelectionDown',
+	'<Plug>unimpairedMoveSelectionUp']
+} #}}}
+
+# Easily delete, change and add surroundings (quotes, parentheses,
+# brackets etc.)
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_map = { #{{{
+	n = ['ySS', 'ySs', 'yss', 'yS', 'ys', 'cS', 'cs', 'ds',
+	'<Plug>CSurround', '<Plug>Csurround', '<Plug>Dsurround',
+	'<Plug>SurroundRepeat', '<Plug>YSsurround', '<Plug>YSurround',
+	'<Plug>Yssurround', '<Plug>Ysurround'],
+	x = ['S', 'gS']
+} #}}}
+
+# Delete buffers without closing the containing window
+[[plugins]]
+repo = 'RobertAudi/vim-bbye'
+on_cmd = ['Bdelete','Bwipeout']
+
+# Add Unicode character names, Vim digraphs, Emoji codes, and HTML
+# entities to the 'ga' command
+[[plugins]]
+repo = 'tpope/vim-characterize'
+on_map = { #{{{
+	n = ['ga', '<Plug>(characterize)']
+} #}}}
+
+# Easily convert tabs<->spaces
+[[plugins]]
+repo = 'Corey-Keller/vim-super-retab'
+on_cmd = ['Space2Tab', 'Tab2Space', 'RetabIndent']
+
+# A better version of matchit
+[[plugins]]
+repo = 'andymass/vim-matchup'
+on_map = { #{{{
+	n = ['%', '[%', ']%', 'g%', 'x%', '<Plug>(matchup-%)',
+	'<Plug>(matchup-[%)', '<Plug>(matchup-]%)',
+	'<Plug>(matchup-double-click)', '<Plug>(matchup-g%)',
+	'<Plug>(matchup-hi-surround)', '<Plug>(matchup-reload)',
+	'<Plug>(matchup-z%)'],
+	o = ['%', '<C-V>a%', '<C-V>i%', '<C-V>z%',
+	'<C-V>[%', '<C-V>]%',
+	'C-V>g%', '<C-V>%', 'Va%', 'Vi%', 'Vz%', 'Vg%', 'V%', 'V[%', 'V]%',
+	'[%', ']%', 'a%', 'g%', 'i%', 'va%', 'vi%', 'vz%', 'vg%', 'v%',
+	'v[%', 'v]%', 'x%', '<Plug>(matchup-%)', '<Plug>(matchup-[%)',
+	'<Plug>(matchup-]%)', '<Plug>(matchup-a%)', '<Plug>(matchup-g%)',
+	'<Plug>(matchup-i%)', '<Plug>(matchup-o_)', '<Plug>(matchup-o_<C-V>)',
+	'<Plug>(matchup-o_V)', '<Plug>(matchup-o_v)', '<Plug>(matchup-z%)'],
+	x = ['%', '[%', ']%', 'a%', 'g%', 'i%', 'x%', '<Plug>(matchup-%)',
+	'<Plug>(matchup-[%)', '<Plug>(matchup-]%)', '<Plug>(matchup-a%)',
+	'<Plug>(matchup-g%)', '<Plug>(matchup-i%)', '<Plug>(matchup-z%)']
+} #}}}
+#}}}
+
+# ============================================================
+# Wiki #{{{
+# ============================================================
+[[plugins]]
+repo = 'lervag/wiki.vim'
+on_map = { #{{{
+	n = ['<Plug>(wiki-fzf-tags)', '<Plug>(wiki-fzf-pages)',
+	'<Plug>(wiki-reload)', '<Plug>(wiki-journal)', '<Plug>(wiki-open)',
+	'<Plug>(wiki-index)', '<leader>wn', '<leader>ww', '<leader>wx']
+} #}}}
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_map = { #{{{
+	n = ['<leader>tm', '<leader>tt', '<Plug>(table-mode-add-formula)',
+	'<Plug>(table-mode-delete-column)', '<Plug>(table-mode-delete-row)',
+	'<Plug>(table-mode-echo-cell)', '<Plug>(table-mode-eval-formula)',
+	'<Plug>(table-mode-motion-down)', '<Plug>(table-mode-motion-left)',
+	'<Plug>(table-mode-motion-right)', '<Plug>(table-mode-motion-up)',
+	'<Plug>(table-mode-realign)', '<Plug>(table-mode-sort)',
+	'<Plug>(table-mode-tableize)'],
+	o = ['<Plug>(table-mode-cell-text-object-a)',
+	'<Plug>(table-mode-cell-text-object-i)'],
+	x = ['<leader>T', '<leader>a', '<leader>f', '<leader>tt',
+	'<Plug>(table-mode-cell-text-object-a)',
+	'<Plug>(table-mode-cell-text-object-i)',
+	'<Plug>(table-mode-tableize-delimiter)', '<Plug>(table-mode-tableize)']
+} #}}}
+#}}}
+
+# ============================================================
+# Misc #{{{
+# ============================================================
+# Add vim-plug style plugin update UI for dein
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd = 'DeinUpdate'
+
+# Git wrapper. Used to display git status in statusline
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+on_cmd = ['G', 'Gblame', 'Gbrowse', 'Gcd', 'Gclog', 'Gcommit', 'Gdelete',
+'Gdiffsplit', 'Gedit', 'Gfetch', 'Ggrep', 'Ghdiffsplit', 'Git', 'Glcd',
+'Glgrep', 'Gllog', 'Glog', 'Gmerge', 'Gmove', 'Gpedit', 'Gpull', 'Gpush',
+'Gread', 'Grebase', 'Gremove', 'Grename', 'Grevert', 'Gsplit', 'Gstatus',
+'Gtabedit', 'Gvdiffsplit', 'Gvsplit', 'Gwq', 'Gwrite']
+on_func = ['FugitiveCommonDir', 'FugitiveConfig', 'FugitiveDetect',
+'FugitiveExtractGitDir', 'FugitiveFind', 'FugitiveGitDir',
+'FugitiveGitPath', 'FugitiveHead', 'FugitiveIsGitDir', 'FugitiveParse',
+'FugitivePath', 'FugitivePrepare', 'FugitiveReal', 'FugitiveRemoteUrl',
+'FugitiveStatusline', 'FugitiveVimPath', 'FugitiveWorkTree']
+
+[[plugins]]
+repo = 'reconquest/vim-pythonx'
+if = '''has('pythonx')'''
+on_source = ['ultisnips', 'coc.nvim', 'vim-snippets']
+
+# Easily open a new scratch buffer
+[[plugin]]
+repo = 'hauleth/vim-backscratch'
+on_cmd = ['Scratch', 'Scratchify']
+#}}}
+
+# vim:set filetype=toml foldmethod=marker:

@@ -1,0 +1,10 @@
+#!/bin/sh
+#From https://justin.abrah.ms/dotfiles/zsh.html
+psgrep() {
+	if [ -n "$1" ] ; then
+		echo "Grepping for processes matching $1..."
+		ps aux | grep -i $1 | grep -v grep
+	else
+		echo "!! Need name to grep for"
+	fi
+}

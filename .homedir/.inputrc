@@ -1,0 +1,28 @@
+$include /etc/inputrc
+
+# Ignore case while completing
+set completion-ignore-case On
+
+# Display possible completions using different colors to indicate their file types
+set colored-stats On
+
+# Completions list immediately, instead of ringing the bell
+set show-all-if-ambiguous On
+
+# Same as show-all-if-ambiguous but in cases that no partial match can be made
+set show-all-if-unmodified On
+
+set completion-prefix-display-length 3
+set visible-stats On
+
+# Immediately add a trailing slash when auto-completing symlinks to directories
+set mark-symlinked-directories On
+
+# set enable-keypad On
+
+# Enable incremental history search with up/down arrows (also Readline goodness)
+# Learn more about this here: http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char

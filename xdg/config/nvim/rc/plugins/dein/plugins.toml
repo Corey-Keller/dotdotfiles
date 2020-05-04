@@ -1,0 +1,183 @@
+# =========================================================================
+# File: plugins.toml
+# Author: Corey Keller
+# Description: Non-lazily loaded plugins
+# Repository: https://github.com/Corey-Keller/dotdotfiles
+# Last Modified: 2020-04-07
+# License: Mozilla Public License 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# =========================================================================
+
+# ============================================================
+# Colorschemes #{{{
+# ============================================================
+[[plugins]]
+repo = 'wimstefan/vim-artesanal'
+
+[[plugins]]
+repo = 'laggardkernel/vim-one'
+
+[[plugins]]
+repo = 'arcticicestudio/nord-vim'
+
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+
+[[plugins]]
+repo = 'jeffkreeftmeijer/vim-dim'
+
+[[plugins]]
+repo = 'nickburlett/vim-colors-stylus'
+
+[[plugins]]
+repo = 'lifepillar/vim-solarized8'
+
+[[plugins]]
+repo = 'reedes/vim-colors-pencil'
+
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
+
+[[plugins]]
+repo = 'romainl/apprentice'
+
+[[plugins]]
+repo = 'sonph/onehalf'
+rtp = 'vim/'
+#}}}
+
+# ============================================================
+# Language Specific #{{{
+# ============================================================
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'kevinoid/vim-jsonc'
+on_ft = 'jsonc'
+#}}}
+
+# ============================================================
+# Completion #{{{
+# ============================================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# coc specific plugins
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[plugins]]
+repo = 'neoclide/coc-neco'
+# if = '''dein#tap('coc.nvim')'''
+# on_source = ['neco-vim']
+# depends = ['coc.nvim', 'neco-vim']
+#}}}
+
+# ============================================================
+# Fuzzy Finder #{{{
+# ============================================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# fzf
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[plugins]]
+repo = 'junegunn/fzf'
+if = '''g:UserConfig.Finder ==? 'fzf' '''
+path = '$GHDIR/junegunn/fzf'
+hook_post_update = './install --all'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LeaderF
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Navigate marks
+[[plugins]]
+repo = 'yggdroot/leaderf-marks'
+depends = 'leaderf'
+if = '''dein#tap('leaderf')'''
+#}}}
+
+# ============================================================
+# Programming #{{{
+# ============================================================
+# Use EditorConfig (https://editorconfig.org/) to determine
+# project standards
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+# Show invisible characters (tab, space, nbsp etc) in vim
+[[plugins]]
+repo = 'Corey-Keller/invisiblechars.vim'
+
+# Linting engine
+# [[plugins]]
+# repo = 'dense-analysis/ale'
+#}}}
+
+# ============================================================
+# Vim Improvements #{{{
+# ============================================================
+# Make '.' repeat full mappings
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+# Set 'path', 'suffixesadd', 'include', 'includeexpr', and 'define'
+#for several file types
+[[plugins]]
+repo = 'tpope/vim-apathy'
+
+# Allow saving with sudo
+[[plugins]]
+repo = 'lambdalisue/suda.vim'
+if = '''has('nvim') && executable('sudo')'''
+
+# A better Directory viewer than netrw
+[[plugins]]
+repo = 'justinmk/vim-dirvish'
+# on_map = { #{{{
+# 	n = ['<Plug>(dirvish_up)', '<Plug>(dirvish_split_up)',
+# 	'<Plug>(dirvish_split_up)']
+# } #}}}
+# on_cmd = ['Dirvish','Shdo']
+
+# Add git status icons in dirvish
+[[plugins]]
+repo = 'kristijanhusak/vim-dirvish-git'
+
+# Show diff when recovering swap file
+[[plugins]]
+repo = 'chrisbra/recover.vim'
+
+# Improved incremental searching
+[[plugins]]
+repo = 'haya14busa/is.vim'
+#}}}
+
+# ============================================================
+# Vim Specific #{{{
+# ============================================================
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '''!has('nvim')'''
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '''!has('nvim')'''
+#}}}
+
+# ============================================================
+# Misc #{{{
+# ============================================================
+# Let dein manage dein
+[[plugins]]
+repo = 'shougo/dein.vim'
+
+# Create templates, by file type, for new files
+[[plugins]]
+repo = 'aperezdc/vim-template'
+# repo = 'tibabit/vim-templates'
+
+[[plugins]]
+repo = 'Corey-Keller/thirsty.vim'
+
+#}}}
+
+# vim:set filetype=toml foldmethod=marker:

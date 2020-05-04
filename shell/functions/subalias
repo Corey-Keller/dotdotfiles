@@ -1,0 +1,29 @@
+#!/bin/sh
+# Enable creating aliases with subcommands
+# https://alexjgriffin.com/post/shell-subaliases/
+subalias() {
+  subaliasName="${1%%=*}"
+  subaliasCmd="${subaliasName%_*}"
+  subaliasBody="${1#*=}"
+
+  eval "$subaliasCmd"'() {
+    subaliasCmd='"$subaliasCmd"' subaliasSubcmd="$1"
+    if type "${subaliasCmd}_${subaliasSubcmd}" >/dev/null 2>&1; then
+      shift
+      "${subaliasCmd}_${subaliasSubcmd}" "$@"
+    elif type "${subaliasCmd}_${subaliasSubcmd}_subalias" >/dev/null 2>&1; then
+      shift
+      "${subaliasCmd}_${subaliasSubcmd}_subalias" "$@"
+    elif type "${subaliasCmd}_subalias" >/dev/null 2>&1; then
+      "${subaliasCmd}_subalias" "$@"
+    else
+      command "$subaliasCmd" "$@"
+    fi
+    unset subaliasBody subaliasCmd subaliasName subaliasSubcmd
+  }'
+
+  if test "$subaliasBody" != "$1"; then
+    eval "${subaliasName}_subalias"'() { '"$subaliasBody"'; }'
+  fi
+  unset subaliasBody subaliasCmd subaliasName subaliasSubcmd
+}

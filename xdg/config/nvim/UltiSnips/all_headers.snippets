@@ -1,0 +1,95 @@
+# =========================================================================
+# File: all_headers.snippets
+# Author: Corey Keller
+# Description: Snippets for creating file, section and comment headers
+# Repository: https://github.com/Corey-Keller/dotdotfiles
+# Last Modified: 2020-03-04
+# License: Mozilla Public License 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# =========================================================================
+
+# Low priority so that filetype specific ones can overwrite it.
+priority 1
+
+global !p
+import vim
+import px.snippets
+from vimsnippets import get_comment_format
+from UltiSnips import UltiSnips_Manager
+from _datetime import datetime
+
+def MkCharLine(char, count):
+	LineString = get_comment_format()[0] + ' ' + char*int(count)
+	return LineString
+def MkCharLineFullLen(char):
+	CommentString = get_comment_format()[0] + ' '
+	CharCount = int(vim.eval("&textwidth")) - len(CommentString)
+	return MkCharLine(char,CharCount)
+def MkHeaderLine(level):
+	all_headers = vim.eval("get(g:, 'HeaderLevels', [[60,'='],[45,'~'],[30, '>']])")
+	try:
+		header = all_headers[int(level) - 1]
+	except IndexError:
+		pass
+	return MkCharLine(header[1],header[0])
+def ExpandLicenseHeader(snip):
+	# Jumper is a helper for performing jumps in UltiSnips.
+	px.snippets.make_jumper(snip)
+
+	if snip.tabstop == 0:
+		snip.expand_anon('LicenseHeader' + snip.tabstops[4].current_text)
+		line = snip.buffer[snip.cursor[0]]
+		snip.buffer[snip.cursor[0]] = \
+			line[:snip.tabstops[4].start[1]+0] + \
+			line[snip.tabstops[4].end[1]+0:]
+		UltiSnips_Manager.expand()
+		# snip.cursor.set(
+		# 	snip.cursor[0],
+		# 	# snip.cursor[1] - 3,
+		# 	snip.tabstops[4].start[1]-4,
+		# )
+endglobal
+
+context "px.snippets.make_context(snip)"
+post_jump "ExpandLicenseHeader(snip)"
+snippet fhead "File Header" b
+`!p snip.rv = MkCharLineFullLen('=')`
+`!p snip.rv = get_comment_format()[0] + ' File: ' + fn`
+`!p snip.rv = get_comment_format()[0] + ' Author: '`${1:`!v g:snips_author`}
+`!p snip.rv = get_comment_format()[0]
+snip.rv += ' Description: '`${2:Brief description of the files purpose.}
+`!p snip.rv = get_comment_format()[0] + ' Repository: '
+snip.rv += snip.opt('g:snips_github', 'https://github.com/user')
+snip.rv += '/'`${3:repo}
+`!p snip.rv = get_comment_format()[0] + ' Last Modified: '
+snip.rv += datetime.now().strftime("%Y-%m-%d")`
+`!p snip.rv = get_comment_format()[0] + ' License: '`${4:MPL2}$0
+`!p snip.rv = MkCharLineFullLen('=')`
+endsnippet
+
+snippet head1 "Section header" b
+`!p snip.rv = MkHeaderLine(1)`
+`!p snip.rv = get_comment_format()[0] + ' '`${1:${VISUAL:Section}}
+`!p snip.rv = MkHeaderLine(1)`
+endsnippet
+
+snippet head2 "Section header" b
+`!p snip.rv = MkHeaderLine(2)`
+`!p snip.rv = get_comment_format()[0] + ' '`${1:${VISUAL:Section}}
+`!p snip.rv = MkHeaderLine(2)`
+endsnippet
+
+snippet head3 "Section header" b
+`!p snip.rv = MkHeaderLine(3)`
+`!p snip.rv = get_comment_format()[0] + ' '`${1:${VISUAL:Section}}
+`!p snip.rv = MkHeaderLine(3)`
+endsnippet
+
+snippet "header([0-9]*)" "Section header" br
+`!p snip.rv = MkHeaderLine(match.group(1))`
+`!p snip.rv = get_comment_format()[0] + ' '`${1:${VISUAL:Section}}
+`!p snip.rv = MkHeaderLine(match.group(1))`
+endsnippet
+

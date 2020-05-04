@@ -1,0 +1,946 @@
+# Monokai color theme for the color GNU ls utility.
+# Designed for dircolors (GNU coreutils) 5.97
+#
+# This file was largely inspired by seebi/dircolors-solarized on github.
+#
+# How the colors were selected:
+# - Terminal emulators often have an option typically enabled by default that makes
+#   bold a different color.  It is important to leave this option enabled so that
+#   you can access the entire 16-color palette, and not just 8 colors.
+# - We favor universality over a greater number of colors.  So we limit the number
+#   of colors so that this theme will work out of the box in all terminals.
+# - We choose to have the following category of files:
+#   NORMAL & FILE, DIR, LINK, EXEC and
+#   editable text including source, unimportant text, binary docs & multimedia source
+#   files, viewable multimedia, archived/compressed, and unimportant non-text
+# - See table below to see the assignments.
+
+
+# Installation instructions
+# This file goes in the /etc directory, and must be world readable.
+# You can copy this file to .dir_colors in your $HOME directory to override
+# the system defaults.
+
+# Init {{{
+
+# COLOR needs one of these arguments: 'tty' colorizes output to ttys, but not
+# pipes. 'all' adds color characters to all output. 'none' shuts colorization
+# off.
+COLOR tty
+
+# Below, there should be one TERM entry for each termtype that is colorizable
+TERM alacritty
+TERM ansi
+TERM color_xterm
+TERM color-xterm
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM dvtm
+TERM dvtm-256color
+TERM Eterm
+TERM eterm-color
+TERM fbterm
+TERM gnome
+TERM gnome-256color
+TERM jfbterm
+TERM konsole
+TERM konsole-256color
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mach-color
+TERM mlterm
+TERM nxterm
+TERM putty
+TERM putty-256color
+TERM rxvt
+TERM rxvt-256color
+TERM rxvt-cygwin
+TERM rxvt-cygwin-native
+TERM rxvt-unicode
+TERM rxvt-unicode256
+TERM rxvt-unicode-256color
+TERM screen
+TERM screen-16color
+TERM screen-16color-bce
+TERM screen-16color-s
+TERM screen-16color-bce-s
+TERM screen-256color
+TERM screen-256color-bce
+TERM screen-256color-s
+TERM screen-256color-bce-s
+TERM screen-256color-italic
+TERM screen-bce
+TERM screen-w
+TERM screen.xterm-256color
+TERM screen.linux
+TERM screen.xterm-new
+TERM st
+TERM st-meta
+TERM st-256color
+TERM st-meta-256color
+TERM tmux
+TERM tmux-256color
+TERM vt100
+TERM xterm
+TERM xterm-new
+TERM xterm-16color
+TERM xterm-256color
+TERM xterm-256color-italic
+TERM xterm-88color
+TERM xterm-color
+TERM xterm-debian
+TERM xterm-termite
+
+# EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
+EIGHTBIT 1
+
+#############################################################################
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+#
+# Attribute codes:
+#   00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+#   30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+#   40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+#
+# NOTES:
+# - See http://www.oreilly.com/catalog/wdnut/excerpt/color_names.html
+# - Color combinations
+#   ANSI Color code       Base16    Base16 Style Use
+#   ~~~~~~~~~~~~~~~       ~~~~~~    ~~~~~~~~~~~~~~~~
+#   00    none
+#   30    black           base00    Default Background
+#   01;30 bright black    base03    
+#   31    red             base08    
+#   01;31 bright red      base09    
+#   32    green           base0B    
+#   01;32 bright green    base01    
+#   33    yellow          base0A    
+#   01;33 bright yellow   base02    
+#   34    blue            base0D    
+#   01;34 bright blue     base04    
+#   35    magenta         base0E    
+#   01;35 bright magenta  base06    
+#   36    cyan            base0C    
+#   01;36 bright cyan     base0F    
+#   37    white           base05    Default Foreground
+#   01;37 bright white    base07    
+#   05;37;41
+
+### By file type
+
+# global default
+NORMAL 00
+# normal file
+FILE 00
+# directory
+DIR 36
+# symbolic link
+LINK 35
+
+# pipe, socket, block device, character device (blue bg)
+FIFO 37;44
+SOCK 37;44
+DOOR 37;44 # Solaris 2.5 and later
+BLK  37;44
+CHR  37;44
+
+#############################################################################
+### By file attributes
+# Orphaned symlinks (blinking white on red)
+# Blink may or may not work (works on iTerm dark or light, and Putty dark)
+ORPHAN  05;37;45
+# ... and the files that orphaned symlinks point to (blinking white on red)
+MISSING 05;37;45
+# dir that is sticky and other-writable (+t,o+w)
+STICKY_OTHER_WRITABLE 30;46
+# dir that is other-writable (o+w) and not sticky
+OTHER_WRITABLE 30;46
+
+# files with execute permission
+EXEC 01;31  # Unix
+.cmd 01;31  # Win
+.exe 01;31  # Win
+.com 01;31  # Win
+.bat 01;31  # Win
+.reg 01;31  # Win
+.app 01;31  # OSX
+
+#############################################################################
+### By extension
+
+# List any file extensions like '.gz' or '.tar' that you would like ls
+# to colorize below. Put the extension, a space, and the color init string.
+# (and any comments you want to add after a '#')
+
+### Text formats
+
+.txt 33
+.org 33
+.md 33
+.mkd 33
+
+# Source text
+.h 32
+.hpp 32
+.c 32
+.C 32
+.cc 32
+.cpp 32
+.cxx 32
+.objc 32
+.cl 32
+.sh 32
+.bash 32
+.csh 32
+.zsh 32
+.el 32
+.vim 32
+.java 32
+.pl 32
+.pm 32
+.py 32
+.rb 32
+.hs 32
+.php 32
+.htm 32
+.html 32
+.shtml 32
+.erb 32
+.haml 32
+.xml 32
+.rdf 32
+.css 32
+.sass 32
+.scss 32
+.less 32
+.js 32
+.coffee 32
+.man 32
+.0 32
+.1 32
+.2 32
+.3 32
+.4 32
+.5 32
+.6 32
+.7 32
+.8 32
+.9 32
+.l 32
+.n 32
+.p 32
+.pod 32
+.tex 32
+.go 32
+.sql 32
+.csv 32
+.sv 32
+.svh 32
+.v 32
+.vh 32
+.vhd 32
+
+
+### Multimedia formats
+
+# Image
+.bmp 01;35
+.cgm 01;35
+.dl 01;35
+.dvi 01;35
+.emf 01;35
+.eps 01;35
+.gif 01;35
+.jpeg 01;35
+.jpg 01;35
+.JPG 01;35
+.mng 01;35
+.pbm 01;35
+.pcx 01;35
+.pdf 01;35
+.pgm 01;35
+.png 01;35
+.ppm 01;35
+.pps 01;35
+.ppsx 01;35
+.ps 01;35
+.svg 01;35
+.svgz 01;35
+.tga 01;35
+.tif 01;35
+.tiff 01;35
+.xbm 01;35
+.xcf 01;35
+.xpm 01;35
+.xwd 01;35
+.xwd 01;35
+.yuv 01;35
+
+# Audio
+.aac 01;35
+.au  01;35
+.flac 01;35
+.mid 01;35
+.midi 01;35
+.mka 01;35
+.mp3 01;35
+.mpa 01;35
+.mpeg 01;35
+.mpg 01;35
+.ogg  01;35
+.opus  01;35
+.ra 01;35
+.wav 01;35
+
+# Video
+.anx 01;35
+.asf 01;35
+.avi 01;35
+.axv 01;35
+.flc 01;35
+.fli 01;35
+.flv 01;35
+.gl 01;35
+.m2v 01;35
+.m4v 01;35
+.mkv 01;35
+.mov 01;35
+.MOV 01;35
+.mp4 01;35
+.mp4v 01;35
+.mpeg 01;35
+.mpg 01;35
+.nuv 01;35
+.ogm 01;35
+.ogv 01;35
+.ogx 01;35
+.qt 01;35
+.rm 01;35
+.rmvb 01;35
+.swf 01;35
+.vob 01;35
+.webm 01;35
+.wmv 01;35
+
+### Misc
+
+# Binary document formats and multimedia source
+.doc 33
+.docx 33
+.rtf 33
+.odt 33
+.dot 33
+.dotx 33
+.ott 33
+.xls 33
+.xlsx 33
+.ods 33
+.ots 33
+.ppt 33
+.pptx 33
+.odp 33
+.otp 33
+.fla 33
+.psd 33
+
+# Archives, compressed
+.7z   1;35
+.apk  1;35
+.arj  1;35
+.bin  1;35
+.bz   1;35
+.bz2  1;35
+.cab  1;35  # Win
+.deb  1;35
+.dmg  1;35  # OSX
+.gem  1;35
+.gz   1;35
+.iso  1;35
+.jar  1;35
+.msi  1;35  # Win
+.rar  1;35
+.rpm  1;35
+.tar  1;35
+.tbz  1;35
+.tbz2 1;35
+.tgz  1;35
+.tx   1;35
+.war  1;35
+.xpi  1;35
+.xz   1;35
+.z    1;35
+.Z    1;35
+.zip  1;35
+
+
+# Testing
+
+.ANSI-black 30
+.ANSI-black-bright 01;30
+.ANSI-red 31
+.ANSI-red-bright 01;31
+.ANSI-green 32
+.ANSI-green-bright 01;32
+.ANSI-yellow 33
+.ANSI-yellow-bright 01;33
+.ANSI-blue 34
+.ANSI-blue-bright 01;34
+.ANSI-magenta 35
+.ANSI-magenta-bright 01;35
+.ANSI-cyan 36
+.ANSI-cyan-bright 01;36
+.ANSI-white 37
+.ANSI-white-bright 01;37
+.ANSI_FG-black-bright_BG-black 01;30;40
+.ANSI_FG-black-bright_BG-black-bright 01;30;01;40
+.ANSI_FG-black-bright_BG-blue 01;30;44
+.ANSI_FG-black-bright_BG-blue-bright 01;30;01;44
+.ANSI_FG-black-bright_BG-cyan 01;30;46
+.ANSI_FG-black-bright_BG-cyan-bright 01;30;01;46
+.ANSI_FG-black-bright_BG-green 01;30;42
+.ANSI_FG-black-bright_BG-green-bright 01;30;01;42
+.ANSI_FG-black-bright_BG-magenta 01;30;45
+.ANSI_FG-black-bright_BG-magenta-bright 01;30;01;45
+.ANSI_FG-black-bright_BG-red 01;30;41
+.ANSI_FG-black-bright_BG-red-bright 01;30;01;41
+.ANSI_FG-black-bright_BG-white 01;30;47
+.ANSI_FG-black-bright_BG-white-bright 01;30;01;47
+.ANSI_FG-black-bright_BG-yellow 01;30;43
+.ANSI_FG-black-bright_BG-yellow-bright 01;30;01;43
+.ANSI_FG-black_BG-black 30;40
+.ANSI_FG-black_BG-black-bright 30;01;40
+.ANSI_FG-black_BG-blue 30;44
+.ANSI_FG-black_BG-blue-bright 30;01;44
+.ANSI_FG-black_BG-cyan 30;46
+.ANSI_FG-black_BG-cyan-bright 30;01;46
+.ANSI_FG-black_BG-green 30;42
+.ANSI_FG-black_BG-green-bright 30;01;42
+.ANSI_FG-black_BG-magenta 30;45
+.ANSI_FG-black_BG-magenta-bright 30;01;45
+.ANSI_FG-black_BG-red 30;41
+.ANSI_FG-black_BG-red-bright 30;01;41
+.ANSI_FG-black_BG-white 30;47
+.ANSI_FG-black_BG-white-bright 30;01;47
+.ANSI_FG-black_BG-yellow 30;43
+.ANSI_FG-black_BG-yellow-bright 30;01;43
+.ANSI_FG-blue-bright_BG-black 01;34;40
+.ANSI_FG-blue-bright_BG-black-bright 01;34;01;40
+.ANSI_FG-blue-bright_BG-blue 01;34;44
+.ANSI_FG-blue-bright_BG-blue-bright 01;34;01;44
+.ANSI_FG-blue-bright_BG-cyan 01;34;46
+.ANSI_FG-blue-bright_BG-cyan-bright 01;34;01;46
+.ANSI_FG-blue-bright_BG-green 01;34;42
+.ANSI_FG-blue-bright_BG-green-bright 01;34;01;42
+.ANSI_FG-blue-bright_BG-magenta 01;34;45
+.ANSI_FG-blue-bright_BG-magenta-bright 01;34;01;45
+.ANSI_FG-blue-bright_BG-red 01;34;41
+.ANSI_FG-blue-bright_BG-red-bright 01;34;01;41
+.ANSI_FG-blue-bright_BG-white 01;34;47
+.ANSI_FG-blue-bright_BG-white-bright 01;34;01;47
+.ANSI_FG-blue-bright_BG-yellow 01;34;43
+.ANSI_FG-blue-bright_BG-yellow-bright 01;34;01;43
+.ANSI_FG-blue_BG-black 34;40
+.ANSI_FG-blue_BG-black-bright 34;01;40
+.ANSI_FG-blue_BG-blue 34;44
+.ANSI_FG-blue_BG-blue-bright 34;01;44
+.ANSI_FG-blue_BG-cyan 34;46
+.ANSI_FG-blue_BG-cyan-bright 34;01;46
+.ANSI_FG-blue_BG-green 34;42
+.ANSI_FG-blue_BG-green-bright 34;01;42
+.ANSI_FG-blue_BG-magenta 34;45
+.ANSI_FG-blue_BG-magenta-bright 34;01;45
+.ANSI_FG-blue_BG-red 34;41
+.ANSI_FG-blue_BG-red-bright 34;01;41
+.ANSI_FG-blue_BG-white 34;47
+.ANSI_FG-blue_BG-white-bright 34;01;47
+.ANSI_FG-blue_BG-yellow 34;43
+.ANSI_FG-blue_BG-yellow-bright 34;01;43
+.ANSI_FG-cyan-bright_BG-black 01;36;40
+.ANSI_FG-cyan-bright_BG-black-bright 01;36;01;40
+.ANSI_FG-cyan-bright_BG-blue 01;36;44
+.ANSI_FG-cyan-bright_BG-blue-bright 01;36;01;44
+.ANSI_FG-cyan-bright_BG-cyan 01;36;46
+.ANSI_FG-cyan-bright_BG-cyan-bright 01;36;01;46
+.ANSI_FG-cyan-bright_BG-green 01;36;42
+.ANSI_FG-cyan-bright_BG-green-bright 01;36;01;42
+.ANSI_FG-cyan-bright_BG-magenta 01;36;45
+.ANSI_FG-cyan-bright_BG-magenta-bright 01;36;01;45
+.ANSI_FG-cyan-bright_BG-red 01;36;41
+.ANSI_FG-cyan-bright_BG-red-bright 01;36;01;41
+.ANSI_FG-cyan-bright_BG-white 01;36;47
+.ANSI_FG-cyan-bright_BG-white-bright 01;36;01;47
+.ANSI_FG-cyan-bright_BG-yellow 01;36;43
+.ANSI_FG-cyan-bright_BG-yellow-bright 01;36;01;43
+.ANSI_FG-cyan_BG-black 36;40
+.ANSI_FG-cyan_BG-black-bright 36;01;40
+.ANSI_FG-cyan_BG-blue 36;44
+.ANSI_FG-cyan_BG-blue-bright 36;01;44
+.ANSI_FG-cyan_BG-cyan 36;46
+.ANSI_FG-cyan_BG-cyan-bright 36;01;46
+.ANSI_FG-cyan_BG-green 36;42
+.ANSI_FG-cyan_BG-green-bright 36;01;42
+.ANSI_FG-cyan_BG-magenta 36;45
+.ANSI_FG-cyan_BG-magenta-bright 36;01;45
+.ANSI_FG-cyan_BG-red 36;41
+.ANSI_FG-cyan_BG-red-bright 36;01;41
+.ANSI_FG-cyan_BG-white 36;47
+.ANSI_FG-cyan_BG-white-bright 36;01;47
+.ANSI_FG-cyan_BG-yellow 36;43
+.ANSI_FG-cyan_BG-yellow-bright 36;01;43
+.ANSI_FG-green-bright_BG-black 01;32;40
+.ANSI_FG-green-bright_BG-black-bright 01;32;01;40
+.ANSI_FG-green-bright_BG-blue 01;32;44
+.ANSI_FG-green-bright_BG-blue-bright 01;32;01;44
+.ANSI_FG-green-bright_BG-cyan 01;32;46
+.ANSI_FG-green-bright_BG-cyan-bright 01;32;01;46
+.ANSI_FG-green-bright_BG-green 01;32;42
+.ANSI_FG-green-bright_BG-green-bright 01;32;01;42
+.ANSI_FG-green-bright_BG-magenta 01;32;45
+.ANSI_FG-green-bright_BG-magenta-bright 01;32;01;45
+.ANSI_FG-green-bright_BG-red 01;32;41
+.ANSI_FG-green-bright_BG-red-bright 01;32;01;41
+.ANSI_FG-green-bright_BG-white 01;32;47
+.ANSI_FG-green-bright_BG-white-bright 01;32;01;47
+.ANSI_FG-green-bright_BG-yellow 01;32;43
+.ANSI_FG-green-bright_BG-yellow-bright 01;32;01;43
+.ANSI_FG-green_BG-black 32;40
+.ANSI_FG-green_BG-black-bright 32;01;40
+.ANSI_FG-green_BG-blue 32;44
+.ANSI_FG-green_BG-blue-bright 32;01;44
+.ANSI_FG-green_BG-cyan 32;46
+.ANSI_FG-green_BG-cyan-bright 32;01;46
+.ANSI_FG-green_BG-green 32;42
+.ANSI_FG-green_BG-green-bright 32;01;42
+.ANSI_FG-green_BG-magenta 32;45
+.ANSI_FG-green_BG-magenta-bright 32;01;45
+.ANSI_FG-green_BG-red 32;41
+.ANSI_FG-green_BG-red-bright 32;01;41
+.ANSI_FG-green_BG-white 32;47
+.ANSI_FG-green_BG-white-bright 32;01;47
+.ANSI_FG-green_BG-yellow 32;43
+.ANSI_FG-green_BG-yellow-bright 32;01;43
+.ANSI_FG-magenta-bright_BG-black 01;35;40
+.ANSI_FG-magenta-bright_BG-black-bright 01;35;01;40
+.ANSI_FG-magenta-bright_BG-blue 01;35;44
+.ANSI_FG-magenta-bright_BG-blue-bright 01;35;01;44
+.ANSI_FG-magenta-bright_BG-cyan 01;35;46
+.ANSI_FG-magenta-bright_BG-cyan-bright 01;35;01;46
+.ANSI_FG-magenta-bright_BG-green 01;35;42
+.ANSI_FG-magenta-bright_BG-green-bright 01;35;01;42
+.ANSI_FG-magenta-bright_BG-magenta 01;35;45
+.ANSI_FG-magenta-bright_BG-magenta-bright 01;35;01;45
+.ANSI_FG-magenta-bright_BG-red 01;35;41
+.ANSI_FG-magenta-bright_BG-red-bright 01;35;01;41
+.ANSI_FG-magenta-bright_BG-white 01;35;47
+.ANSI_FG-magenta-bright_BG-white-bright 01;35;01;47
+.ANSI_FG-magenta-bright_BG-yellow 01;35;43
+.ANSI_FG-magenta-bright_BG-yellow-bright 01;35;01;43
+.ANSI_FG-magenta_BG-black 35;40
+.ANSI_FG-magenta_BG-black-bright 35;01;40
+.ANSI_FG-magenta_BG-blue 35;44
+.ANSI_FG-magenta_BG-blue-bright 35;01;44
+.ANSI_FG-magenta_BG-cyan 35;46
+.ANSI_FG-magenta_BG-cyan-bright 35;01;46
+.ANSI_FG-magenta_BG-green 35;42
+.ANSI_FG-magenta_BG-green-bright 35;01;42
+.ANSI_FG-magenta_BG-magenta 35;45
+.ANSI_FG-magenta_BG-magenta-bright 35;01;45
+.ANSI_FG-magenta_BG-red 35;41
+.ANSI_FG-magenta_BG-red-bright 35;01;41
+.ANSI_FG-magenta_BG-white 35;47
+.ANSI_FG-magenta_BG-white-bright 35;01;47
+.ANSI_FG-magenta_BG-yellow 35;43
+.ANSI_FG-magenta_BG-yellow-bright 35;01;43
+.ANSI_FG-red-bright_BG-black 01;31;40
+.ANSI_FG-red-bright_BG-black-bright 01;31;01;40
+.ANSI_FG-red-bright_BG-blue 01;31;44
+.ANSI_FG-red-bright_BG-blue-bright 01;31;01;44
+.ANSI_FG-red-bright_BG-cyan 01;31;46
+.ANSI_FG-red-bright_BG-cyan-bright 01;31;01;46
+.ANSI_FG-red-bright_BG-green 01;31;42
+.ANSI_FG-red-bright_BG-green-bright 01;31;01;42
+.ANSI_FG-red-bright_BG-magenta 01;31;45
+.ANSI_FG-red-bright_BG-magenta-bright 01;31;01;45
+.ANSI_FG-red-bright_BG-red 01;31;41
+.ANSI_FG-red-bright_BG-red-bright 01;31;01;41
+.ANSI_FG-red-bright_BG-white 01;31;47
+.ANSI_FG-red-bright_BG-white-bright 01;31;01;47
+.ANSI_FG-red-bright_BG-yellow 01;31;43
+.ANSI_FG-red-bright_BG-yellow-bright 01;31;01;43
+.ANSI_FG-red_BG-black 31;40
+.ANSI_FG-red_BG-black-bright 31;01;40
+.ANSI_FG-red_BG-blue 31;44
+.ANSI_FG-red_BG-blue-bright 31;01;44
+.ANSI_FG-red_BG-cyan 31;46
+.ANSI_FG-red_BG-cyan-bright 31;01;46
+.ANSI_FG-red_BG-green 31;42
+.ANSI_FG-red_BG-green-bright 31;01;42
+.ANSI_FG-red_BG-magenta 31;45
+.ANSI_FG-red_BG-magenta-bright 31;01;45
+.ANSI_FG-red_BG-red 31;41
+.ANSI_FG-red_BG-red-bright 31;01;41
+.ANSI_FG-red_BG-white 31;47
+.ANSI_FG-red_BG-white-bright 31;01;47
+.ANSI_FG-red_BG-yellow 31;43
+.ANSI_FG-red_BG-yellow-bright 31;01;43
+.ANSI_FG-white-bright_BG-black 01;37;40
+.ANSI_FG-white-bright_BG-black-bright 01;37;01;40
+.ANSI_FG-white-bright_BG-blue 01;37;44
+.ANSI_FG-white-bright_BG-blue-bright 01;37;01;44
+.ANSI_FG-white-bright_BG-cyan 01;37;46
+.ANSI_FG-white-bright_BG-cyan-bright 01;37;01;46
+.ANSI_FG-white-bright_BG-green 01;37;42
+.ANSI_FG-white-bright_BG-green-bright 01;37;01;42
+.ANSI_FG-white-bright_BG-magenta 01;37;45
+.ANSI_FG-white-bright_BG-magenta-bright 01;37;01;45
+.ANSI_FG-white-bright_BG-red 01;37;41
+.ANSI_FG-white-bright_BG-red-bright 01;37;01;41
+.ANSI_FG-white-bright_BG-white 01;37;47
+.ANSI_FG-white-bright_BG-white-bright 01;37;01;47
+.ANSI_FG-white-bright_BG-yellow 01;37;43
+.ANSI_FG-white-bright_BG-yellow-bright 01;37;01;43
+.ANSI_FG-white_BG-black 37;40
+.ANSI_FG-white_BG-black-bright 37;01;40
+.ANSI_FG-white_BG-blue 37;44
+.ANSI_FG-white_BG-blue-bright 37;01;44
+.ANSI_FG-white_BG-cyan 37;46
+.ANSI_FG-white_BG-cyan-bright 37;01;46
+.ANSI_FG-white_BG-green 37;42
+.ANSI_FG-white_BG-green-bright 37;01;42
+.ANSI_FG-white_BG-magenta 37;45
+.ANSI_FG-white_BG-magenta-bright 37;01;45
+.ANSI_FG-white_BG-red 37;41
+.ANSI_FG-white_BG-red-bright 37;01;41
+.ANSI_FG-white_BG-white 37;47
+.ANSI_FG-white_BG-white-bright 37;01;47
+.ANSI_FG-white_BG-yellow 37;43
+.ANSI_FG-white_BG-yellow-bright 37;01;43
+.ANSI_FG-yellow-bright_BG-black 01;33;40
+.ANSI_FG-yellow-bright_BG-black-bright 01;33;01;40
+.ANSI_FG-yellow-bright_BG-blue 01;33;44
+.ANSI_FG-yellow-bright_BG-blue-bright 01;33;01;44
+.ANSI_FG-yellow-bright_BG-cyan 01;33;46
+.ANSI_FG-yellow-bright_BG-cyan-bright 01;33;01;46
+.ANSI_FG-yellow-bright_BG-green 01;33;42
+.ANSI_FG-yellow-bright_BG-green-bright 01;33;01;42
+.ANSI_FG-yellow-bright_BG-magenta 01;33;45
+.ANSI_FG-yellow-bright_BG-magenta-bright 01;33;01;45
+.ANSI_FG-yellow-bright_BG-red 01;33;41
+.ANSI_FG-yellow-bright_BG-red-bright 01;33;01;41
+.ANSI_FG-yellow-bright_BG-white 01;33;47
+.ANSI_FG-yellow-bright_BG-white-bright 01;33;01;47
+.ANSI_FG-yellow-bright_BG-yellow 01;33;43
+.ANSI_FG-yellow-bright_BG-yellow-bright 01;33;01;43
+.ANSI_FG-yellow_BG-black 33;40
+.ANSI_FG-yellow_BG-black-bright 33;01;40
+.ANSI_FG-yellow_BG-blue 33;44
+.ANSI_FG-yellow_BG-blue-bright 33;01;44
+.ANSI_FG-yellow_BG-cyan 33;46
+.ANSI_FG-yellow_BG-cyan-bright 33;01;46
+.ANSI_FG-yellow_BG-green 33;42
+.ANSI_FG-yellow_BG-green-bright 33;01;42
+.ANSI_FG-yellow_BG-magenta 33;45
+.ANSI_FG-yellow_BG-magenta-bright 33;01;45
+.ANSI_FG-yellow_BG-red 33;41
+.ANSI_FG-yellow_BG-red-bright 33;01;41
+.ANSI_FG-yellow_BG-white 33;47
+.ANSI_FG-yellow_BG-white-bright 33;01;47
+.ANSI_FG-yellow_BG-yellow 33;43
+.ANSI_FG-yellow_BG-yellow-bright 33;01;43
+.ANSI_BG-black_FG-black-bright 01;30;40
+.ANSI_BG-black-bright_FG-black-bright 01;30;01;40
+.ANSI_BG-blue_FG-black-bright 01;30;44
+.ANSI_BG-blue-bright_FG-black-bright 01;30;01;44
+.ANSI_BG-cyan_FG-black-bright 01;30;46
+.ANSI_BG-cyan-bright_FG-black-bright 01;30;01;46
+.ANSI_BG-green_FG-black-bright 01;30;42
+.ANSI_BG-green-bright_FG-black-bright 01;30;01;42
+.ANSI_BG-magenta_FG-black-bright 01;30;45
+.ANSI_BG-magenta-bright_FG-black-bright 01;30;01;45
+.ANSI_BG-red_FG-black-bright 01;30;41
+.ANSI_BG-red-bright_FG-black-bright 01;30;01;41
+.ANSI_BG-white_FG-black-bright 01;30;47
+.ANSI_BG-white-bright_FG-black-bright 01;30;01;47
+.ANSI_BG-yellow_FG-black-bright 01;30;43
+.ANSI_BG-yellow-bright_FG-black-bright 01;30;01;43
+.ANSI_BG-black_FG-black 30;40
+.ANSI_BG-black-bright_FG-black 30;01;40
+.ANSI_BG-blue_FG-black 30;44
+.ANSI_BG-blue-bright_FG-black 30;01;44
+.ANSI_BG-cyan_FG-black 30;46
+.ANSI_BG-cyan-bright_FG-black 30;01;46
+.ANSI_BG-green_FG-black 30;42
+.ANSI_BG-green-bright_FG-black 30;01;42
+.ANSI_BG-magenta_FG-black 30;45
+.ANSI_BG-magenta-bright_FG-black 30;01;45
+.ANSI_BG-red_FG-black 30;41
+.ANSI_BG-red-bright_FG-black 30;01;41
+.ANSI_BG-white_FG-black 30;47
+.ANSI_BG-white-bright_FG-black 30;01;47
+.ANSI_BG-yellow_FG-black 30;43
+.ANSI_BG-yellow-bright_FG-black 30;01;43
+.ANSI_BG-black_FG-blue-bright 01;34;40
+.ANSI_BG-black-bright_FG-blue-bright 01;34;01;40
+.ANSI_BG-blue_FG-blue-bright 01;34;44
+.ANSI_BG-blue-bright_FG-blue-bright 01;34;01;44
+.ANSI_BG-cyan_FG-blue-bright 01;34;46
+.ANSI_BG-cyan-bright_FG-blue-bright 01;34;01;46
+.ANSI_BG-green_FG-blue-bright 01;34;42
+.ANSI_BG-green-bright_FG-blue-bright 01;34;01;42
+.ANSI_BG-magenta_FG-blue-bright 01;34;45
+.ANSI_BG-magenta-bright_FG-blue-bright 01;34;01;45
+.ANSI_BG-red_FG-blue-bright 01;34;41
+.ANSI_BG-red-bright_FG-blue-bright 01;34;01;41
+.ANSI_BG-white_FG-blue-bright 01;34;47
+.ANSI_BG-white-bright_FG-blue-bright 01;34;01;47
+.ANSI_BG-yellow_FG-blue-bright 01;34;43
+.ANSI_BG-yellow-bright_FG-blue-bright 01;34;01;43
+.ANSI_BG-black_FG-blue 34;40
+.ANSI_BG-black-bright_FG-blue 34;01;40
+.ANSI_BG-blue_FG-blue 34;44
+.ANSI_BG-blue-bright_FG-blue 34;01;44
+.ANSI_BG-cyan_FG-blue 34;46
+.ANSI_BG-cyan-bright_FG-blue 34;01;46
+.ANSI_BG-green_FG-blue 34;42
+.ANSI_BG-green-bright_FG-blue 34;01;42
+.ANSI_BG-magenta_FG-blue 34;45
+.ANSI_BG-magenta-bright_FG-blue 34;01;45
+.ANSI_BG-red_FG-blue 34;41
+.ANSI_BG-red-bright_FG-blue 34;01;41
+.ANSI_BG-white_FG-blue 34;47
+.ANSI_BG-white-bright_FG-blue 34;01;47
+.ANSI_BG-yellow_FG-blue 34;43
+.ANSI_BG-yellow-bright_FG-blue 34;01;43
+.ANSI_BG-black_FG-cyan-bright 01;36;40
+.ANSI_BG-black-bright_FG-cyan-bright 01;36;01;40
+.ANSI_BG-blue_FG-cyan-bright 01;36;44
+.ANSI_BG-blue-bright_FG-cyan-bright 01;36;01;44
+.ANSI_BG-cyan_FG-cyan-bright 01;36;46
+.ANSI_BG-cyan-bright_FG-cyan-bright 01;36;01;46
+.ANSI_BG-green_FG-cyan-bright 01;36;42
+.ANSI_BG-green-bright_FG-cyan-bright 01;36;01;42
+.ANSI_BG-magenta_FG-cyan-bright 01;36;45
+.ANSI_BG-magenta-bright_FG-cyan-bright 01;36;01;45
+.ANSI_BG-red_FG-cyan-bright 01;36;41
+.ANSI_BG-red-bright_FG-cyan-bright 01;36;01;41
+.ANSI_BG-white_FG-cyan-bright 01;36;47
+.ANSI_BG-white-bright_FG-cyan-bright 01;36;01;47
+.ANSI_BG-yellow_FG-cyan-bright 01;36;43
+.ANSI_BG-yellow-bright_FG-cyan-bright 01;36;01;43
+.ANSI_BG-black_FG-cyan 36;40
+.ANSI_BG-black-bright_FG-cyan 36;01;40
+.ANSI_BG-blue_FG-cyan 36;44
+.ANSI_BG-blue-bright_FG-cyan 36;01;44
+.ANSI_BG-cyan_FG-cyan 36;46
+.ANSI_BG-cyan-bright_FG-cyan 36;01;46
+.ANSI_BG-green_FG-cyan 36;42
+.ANSI_BG-green-bright_FG-cyan 36;01;42
+.ANSI_BG-magenta_FG-cyan 36;45
+.ANSI_BG-magenta-bright_FG-cyan 36;01;45
+.ANSI_BG-red_FG-cyan 36;41
+.ANSI_BG-red-bright_FG-cyan 36;01;41
+.ANSI_BG-white_FG-cyan 36;47
+.ANSI_BG-white-bright_FG-cyan 36;01;47
+.ANSI_BG-yellow_FG-cyan 36;43
+.ANSI_BG-yellow-bright_FG-cyan 36;01;43
+.ANSI_BG-black_FG-green-bright 01;32;40
+.ANSI_BG-black-bright_FG-green-bright 01;32;01;40
+.ANSI_BG-blue_FG-green-bright 01;32;44
+.ANSI_BG-blue-bright_FG-green-bright 01;32;01;44
+.ANSI_BG-cyan_FG-green-bright 01;32;46
+.ANSI_BG-cyan-bright_FG-green-bright 01;32;01;46
+.ANSI_BG-green_FG-green-bright 01;32;42
+.ANSI_BG-green-bright_FG-green-bright 01;32;01;42
+.ANSI_BG-magenta_FG-green-bright 01;32;45
+.ANSI_BG-magenta-bright_FG-green-bright 01;32;01;45
+.ANSI_BG-red_FG-green-bright 01;32;41
+.ANSI_BG-red-bright_FG-green-bright 01;32;01;41
+.ANSI_BG-white_FG-green-bright 01;32;47
+.ANSI_BG-white-bright_FG-green-bright 01;32;01;47
+.ANSI_BG-yellow_FG-green-bright 01;32;43
+.ANSI_BG-yellow-bright_FG-green-bright 01;32;01;43
+.ANSI_BG-black_FG-green 32;40
+.ANSI_BG-black-bright_FG-green 32;01;40
+.ANSI_BG-blue_FG-green 32;44
+.ANSI_BG-blue-bright_FG-green 32;01;44
+.ANSI_BG-cyan_FG-green 32;46
+.ANSI_BG-cyan-bright_FG-green 32;01;46
+.ANSI_BG-green_FG-green 32;42
+.ANSI_BG-green-bright_FG-green 32;01;42
+.ANSI_BG-magenta_FG-green 32;45
+.ANSI_BG-magenta-bright_FG-green 32;01;45
+.ANSI_BG-red_FG-green 32;41
+.ANSI_BG-red-bright_FG-green 32;01;41
+.ANSI_BG-white_FG-green 32;47
+.ANSI_BG-white-bright_FG-green 32;01;47
+.ANSI_BG-yellow_FG-green 32;43
+.ANSI_BG-yellow-bright_FG-green 32;01;43
+.ANSI_BG-black_FG-magenta-bright 01;35;40
+.ANSI_BG-black-bright_FG-magenta-bright 01;35;01;40
+.ANSI_BG-blue_FG-magenta-bright 01;35;44
+.ANSI_BG-blue-bright_FG-magenta-bright 01;35;01;44
+.ANSI_BG-cyan_FG-magenta-bright 01;35;46
+.ANSI_BG-cyan-bright_FG-magenta-bright 01;35;01;46
+.ANSI_BG-green_FG-magenta-bright 01;35;42
+.ANSI_BG-green-bright_FG-magenta-bright 01;35;01;42
+.ANSI_BG-magenta_FG-magenta-bright 01;35;45
+.ANSI_BG-magenta-bright_FG-magenta-bright 01;35;01;45
+.ANSI_BG-red_FG-magenta-bright 01;35;41
+.ANSI_BG-red-bright_FG-magenta-bright 01;35;01;41
+.ANSI_BG-white_FG-magenta-bright 01;35;47
+.ANSI_BG-white-bright_FG-magenta-bright 01;35;01;47
+.ANSI_BG-yellow_FG-magenta-bright 01;35;43
+.ANSI_BG-yellow-bright_FG-magenta-bright 01;35;01;43
+.ANSI_BG-black_FG-magenta 35;40
+.ANSI_BG-black-bright_FG-magenta 35;01;40
+.ANSI_BG-blue_FG-magenta 35;44
+.ANSI_BG-blue-bright_FG-magenta 35;01;44
+.ANSI_BG-cyan_FG-magenta 35;46
+.ANSI_BG-cyan-bright_FG-magenta 35;01;46
+.ANSI_BG-green_FG-magenta 35;42
+.ANSI_BG-green-bright_FG-magenta 35;01;42
+.ANSI_BG-magenta_FG-magenta 35;45
+.ANSI_BG-magenta-bright_FG-magenta 35;01;45
+.ANSI_BG-red_FG-magenta 35;41
+.ANSI_BG-red-bright_FG-magenta 35;01;41
+.ANSI_BG-white_FG-magenta 35;47
+.ANSI_BG-white-bright_FG-magenta 35;01;47
+.ANSI_BG-yellow_FG-magenta 35;43
+.ANSI_BG-yellow-bright_FG-magenta 35;01;43
+.ANSI_BG-black_FG-red-bright 01;31;40
+.ANSI_BG-black-bright_FG-red-bright 01;31;01;40
+.ANSI_BG-blue_FG-red-bright 01;31;44
+.ANSI_BG-blue-bright_FG-red-bright 01;31;01;44
+.ANSI_BG-cyan_FG-red-bright 01;31;46
+.ANSI_BG-cyan-bright_FG-red-bright 01;31;01;46
+.ANSI_BG-green_FG-red-bright 01;31;42
+.ANSI_BG-green-bright_FG-red-bright 01;31;01;42
+.ANSI_BG-magenta_FG-red-bright 01;31;45
+.ANSI_BG-magenta-bright_FG-red-bright 01;31;01;45
+.ANSI_BG-red_FG-red-bright 01;31;41
+.ANSI_BG-red-bright_FG-red-bright 01;31;01;41
+.ANSI_BG-white_FG-red-bright 01;31;47
+.ANSI_BG-white-bright_FG-red-bright 01;31;01;47
+.ANSI_BG-yellow_FG-red-bright 01;31;43
+.ANSI_BG-yellow-bright_FG-red-bright 01;31;01;43
+.ANSI_BG-black_FG-red 31;40
+.ANSI_BG-black-bright_FG-red 31;01;40
+.ANSI_BG-blue_FG-red 31;44
+.ANSI_BG-blue-bright_FG-red 31;01;44
+.ANSI_BG-cyan_FG-red 31;46
+.ANSI_BG-cyan-bright_FG-red 31;01;46
+.ANSI_BG-green_FG-red 31;42
+.ANSI_BG-green-bright_FG-red 31;01;42
+.ANSI_BG-magenta_FG-red 31;45
+.ANSI_BG-magenta-bright_FG-red 31;01;45
+.ANSI_BG-red_FG-red 31;41
+.ANSI_BG-red-bright_FG-red 31;01;41
+.ANSI_BG-white_FG-red 31;47
+.ANSI_BG-white-bright_FG-red 31;01;47
+.ANSI_BG-yellow_FG-red 31;43
+.ANSI_BG-yellow-bright_FG-red 31;01;43
+.ANSI_BG-black_FG-white-bright 01;37;40
+.ANSI_BG-black-bright_FG-white-bright 01;37;01;40
+.ANSI_BG-blue_FG-white-bright 01;37;44
+.ANSI_BG-blue-bright_FG-white-bright 01;37;01;44
+.ANSI_BG-cyan_FG-white-bright 01;37;46
+.ANSI_BG-cyan-bright_FG-white-bright 01;37;01;46
+.ANSI_BG-green_FG-white-bright 01;37;42
+.ANSI_BG-green-bright_FG-white-bright 01;37;01;42
+.ANSI_BG-magenta_FG-white-bright 01;37;45
+.ANSI_BG-magenta-bright_FG-white-bright 01;37;01;45
+.ANSI_BG-red_FG-white-bright 01;37;41
+.ANSI_BG-red-bright_FG-white-bright 01;37;01;41
+.ANSI_BG-white_FG-white-bright 01;37;47
+.ANSI_BG-white-bright_FG-white-bright 01;37;01;47
+.ANSI_BG-yellow_FG-white-bright 01;37;43
+.ANSI_BG-yellow-bright_FG-white-bright 01;37;01;43
+.ANSI_BG-black_FG-white 37;40
+.ANSI_BG-black-bright_FG-white 37;01;40
+.ANSI_BG-blue_FG-white 37;44
+.ANSI_BG-blue-bright_FG-white 37;01;44
+.ANSI_BG-cyan_FG-white 37;46
+.ANSI_BG-cyan-bright_FG-white 37;01;46
+.ANSI_BG-green_FG-white 37;42
+.ANSI_BG-green-bright_FG-white 37;01;42
+.ANSI_BG-magenta_FG-white 37;45
+.ANSI_BG-magenta-bright_FG-white 37;01;45
+.ANSI_BG-red_FG-white 37;41
+.ANSI_BG-red-bright_FG-white 37;01;41
+.ANSI_BG-white_FG-white 37;47
+.ANSI_BG-white-bright_FG-white 37;01;47
+.ANSI_BG-yellow_FG-white 37;43
+.ANSI_BG-yellow-bright_FG-white 37;01;43
+.ANSI_BG-black_FG-yellow-bright 01;33;40
+.ANSI_BG-black-bright_FG-yellow-bright 01;33;01;40
+.ANSI_BG-blue_FG-yellow-bright 01;33;44
+.ANSI_BG-blue-bright_FG-yellow-bright 01;33;01;44
+.ANSI_BG-cyan_FG-yellow-bright 01;33;46
+.ANSI_BG-cyan-bright_FG-yellow-bright 01;33;01;46
+.ANSI_BG-green_FG-yellow-bright 01;33;42
+.ANSI_BG-green-bright_FG-yellow-bright 01;33;01;42
+.ANSI_BG-magenta_FG-yellow-bright 01;33;45
+.ANSI_BG-magenta-bright_FG-yellow-bright 01;33;01;45
+.ANSI_BG-red_FG-yellow-bright 01;33;41
+.ANSI_BG-red-bright_FG-yellow-bright 01;33;01;41
+.ANSI_BG-white_FG-yellow-bright 01;33;47
+.ANSI_BG-white-bright_FG-yellow-bright 01;33;01;47
+.ANSI_BG-yellow_FG-yellow-bright 01;33;43
+.ANSI_BG-yellow-bright_FG-yellow-bright 01;33;01;43
+.ANSI_BG-black_FG-yellow 33;40
+.ANSI_BG-black-bright_FG-yellow 33;01;40
+.ANSI_BG-blue_FG-yellow 33;44
+.ANSI_BG-blue-bright_FG-yellow 33;01;44
+.ANSI_BG-cyan_FG-yellow 33;46
+.ANSI_BG-cyan-bright_FG-yellow 33;01;46
+.ANSI_BG-green_FG-yellow 33;42
+.ANSI_BG-green-bright_FG-yellow 33;01;42
+.ANSI_BG-magenta_FG-yellow 33;45
+.ANSI_BG-magenta-bright_FG-yellow 33;01;45
+.ANSI_BG-red_FG-yellow 33;41
+.ANSI_BG-red-bright_FG-yellow 33;01;41
+.ANSI_BG-white_FG-yellow 33;47
+.ANSI_BG-white-bright_FG-yellow 33;01;47
+.ANSI_BG-yellow_FG-yellow 33;43
+.ANSI_BG-yellow-bright_FG-yellow 33;01;43
+
+# Unimportant text files
+*# 32
+*~ 32
+.log 32
+
+# Unimportant non-text files
+.bak 01;30
+.BAK 01;30
+.old 01;30
+.OLD 01;30
+.org_archive 01;30
+.ORG_ARCHIVE 01;30
+.off 01;30
+.OFF 01;30
+.dist 01;30
+.DIST 01;30
+.orig 01;30
+.ORIG 01;30
+.swo 01;30
+.SWO 01;30
+.swp 01;30
+.SWP 01;30
+*,v 01;30
+
