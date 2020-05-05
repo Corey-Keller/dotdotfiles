@@ -409,18 +409,18 @@ repo = 'wsdjeg/dein-ui.vim'
 on_cmd = 'DeinUpdate'
 
 # Git wrapper. Used to display git status in statusline
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-on_cmd = ['G', 'Gblame', 'Gbrowse', 'Gcd', 'Gclog', 'Gcommit', 'Gdelete',
-'Gdiffsplit', 'Gedit', 'Gfetch', 'Ggrep', 'Ghdiffsplit', 'Git', 'Glcd',
-'Glgrep', 'Gllog', 'Glog', 'Gmerge', 'Gmove', 'Gpedit', 'Gpull', 'Gpush',
-'Gread', 'Grebase', 'Gremove', 'Grename', 'Grevert', 'Gsplit', 'Gstatus',
-'Gtabedit', 'Gvdiffsplit', 'Gvsplit', 'Gwq', 'Gwrite']
-on_func = ['FugitiveCommonDir', 'FugitiveConfig', 'FugitiveDetect',
-'FugitiveExtractGitDir', 'FugitiveFind', 'FugitiveGitDir',
-'FugitiveGitPath', 'FugitiveHead', 'FugitiveIsGitDir', 'FugitiveParse',
-'FugitivePath', 'FugitivePrepare', 'FugitiveReal', 'FugitiveRemoteUrl',
-'FugitiveStatusline', 'FugitiveVimPath', 'FugitiveWorkTree']
+# [[plugins]]
+# repo = 'tpope/vim-fugitive'
+# on_cmd = ['G', 'Gblame', 'Gbrowse', 'Gcd', 'Gclog', 'Gcommit', 'Gdelete',
+# 'Gdiffsplit', 'Gedit', 'Gfetch', 'Ggrep', 'Ghdiffsplit', 'Git', 'Glcd',
+# 'Glgrep', 'Gllog', 'Glog', 'Gmerge', 'Gmove', 'Gpedit', 'Gpull', 'Gpush',
+# 'Gread', 'Grebase', 'Gremove', 'Grename', 'Grevert', 'Gsplit', 'Gstatus',
+# 'Gtabedit', 'Gvdiffsplit', 'Gvsplit', 'Gwq', 'Gwrite']
+# on_func = ['FugitiveCommonDir', 'FugitiveConfig', 'FugitiveDetect',
+# 'FugitiveExtractGitDir', 'FugitiveFind', 'FugitiveGitDir',
+# 'FugitiveGitPath', 'FugitiveHead', 'FugitiveIsGitDir', 'FugitiveParse',
+# 'FugitivePath', 'FugitivePrepare', 'FugitiveReal', 'FugitiveRemoteUrl',
+# 'FugitiveStatusline', 'FugitiveVimPath', 'FugitiveWorkTree']
 
 [[plugins]]
 repo = 'reconquest/vim-pythonx'

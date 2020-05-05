@@ -170,6 +170,10 @@ if = '''!has('nvim')'''
 [[plugins]]
 repo = 'shougo/dein.vim'
 
+# Git wrapper. Used to display git status in statusline
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
 # Create templates, by file type, for new files
 [[plugins]]
 repo = 'aperezdc/vim-template'
