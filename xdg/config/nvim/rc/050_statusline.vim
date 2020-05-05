@@ -31,14 +31,14 @@ function! SetActiveStatusLine() abort "{{{
 	call add(l:statusline, '%#StatusLine#')               " colour
 	call add(l:statusline, '%R')                          " readonly flag
 	call add(l:statusline, '%M')                          " modified [+] flag
-	if get(g:, 'loaded_fugitive')
-		call add(l:statusline, '%#Cursor#%{FugitiveStatusline()}')
-		call add(l:statusline, '%#StatusLine#')
-	endif
 	call add(l:statusline, ' %t ')                        " short file name
 	call add(l:statusline, '%=')                          " right align
 	if get(g:, 'loaded_gutentags')
 		call add(l:statusline, '%{gutentags#statusline()}')
+	endif
+	if get(g:, 'loaded_fugitive')
+		call add(l:statusline, '%#TabLine#%{FugitiveStatusline()}')
+		call add(l:statusline, '%#StatusLine#')
 	endif
 	call add(l:statusline, ' %3l:%-2c ')                  " line:column
 	call add(l:statusline, '%#StatusLineNC#')             " colour
