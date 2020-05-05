@@ -5,7 +5,9 @@
 # name.backup_YYYY-MM-DDTHH.MM.SSZ.ext
 *.backup_[12][09][0-9][0-9]-[0-1][0-9]-[0-3][0-9]T[0-2][0-9].[0-5][0-9].[0-5][0-9]Z*
 
-### [neo]vim ###
+# ============================================================
+# [neo]vim
+# ============================================================
 # neovim shada file
 /xdg/data/*vim*/shada/main.shada
 
@@ -13,6 +15,13 @@
 /xdg/data/*vim*/backup
 /xdg/data/*vim*/swap
 /xdg/data/*vim*/undo
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# coc.nvim
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/xdg/config/coc/extensions/db.json
+/xdg/config/coc/extensions/package.json
+/xdg/config/coc/mru
 
 # dein data files
 /xdg/data/*vim*/dein
