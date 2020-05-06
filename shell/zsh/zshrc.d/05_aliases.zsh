@@ -1,8 +1,14 @@
-##########################
-#### zsh aliases
-##########################
-
-##This file is for zsh specific aliases
+# =========================================================================
+# File: 05_aliases.zsh
+# Author: Corey Keller
+# Description: This file is for zsh specific aliases
+# Repository: https://github.com/Corey-Keller/dotdotfiles
+# Last Modified: 2020-05-06
+# License: Mozilla Public License 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# =========================================================================
 
 # add all the function aliases
 local dotfilesFunctionDir="$DOTFILESDIR/shell/functions"
@@ -12,7 +18,7 @@ local dotfilesFunctionDir="$DOTFILESDIR/shell/functions"
 autoload -Uk $dotfilesFunctionDir/*(:t)
 
 # add the shell agnostic aliases
-source $DOTFILESDIR/shell/aliases
+source $DOTFILESDIR/shell/aliases.sh
 
 #CD ALIASES
 alias -g ...='../..'

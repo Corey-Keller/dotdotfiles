@@ -1,6 +1,6 @@
 #!/bin/sh
 # =========================================================================
-# File: aliases
+# File: aliases.sh
 # Author: Corey Keller
 # Description: This file is for shell agnostic aliases
 # Repository: https://github.com/Corey-Keller/dotdotfiles
