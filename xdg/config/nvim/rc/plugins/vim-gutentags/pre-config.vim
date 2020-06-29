@@ -5,7 +5,7 @@
 " let g:gutentags_trace = 1
 
 " Enable (1) or disable (0) gutentags from running
-let g:gutentags_enabled=0
+let g:gutentags_enabled=1
 
 let g:gutentags_project_root = ['.tags_root_dir', '.root']
 
@@ -16,9 +16,9 @@ if executable('ctags')
 	let g:gutentags_modules += ['ctags']
 endif
 
-if executable('cscope')
-	let g:gutentags_modules += ['cscope']
-endif
+" if executable('cscope')
+" 	let g:gutentags_modules += ['cscope']
+" endif
 
 if executable('gtags-cscope') && executable('gtags')
 	let g:gutentags_modules += ['gtags_cscope']

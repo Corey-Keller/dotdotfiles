@@ -108,12 +108,12 @@ hook_post_update = ':Clap install-binary!'
 # Tags #{{{
 # ============================================================
 # Automatic tag generation
-# [[plugins]]
-# repo = 'ludovicchabant/vim-gutentags'
-# if = '''v:version >= 800 &&(executable('ctags')||executable('global'))'''
-# on_event = 'VimEnter'
-#
-# # Seamless database switching
+[[plugins]]
+repo = 'ludovicchabant/vim-gutentags'
+if = '''v:version >= 800 &&(executable('ctags')||executable('global'))'''
+on_event = 'VimEnter'
+
+# Seamless database switching
 # [[plugins]]
 # repo = 'skywind3000/gutentags_plus'
 # if = '''dein#tap('vim-gutentags')'''

@@ -58,6 +58,10 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'kevinoid/vim-jsonc'
 on_ft = 'jsonc'
+
+[[plugins]]
+repo = 'PProvost/vim-ps1'
+on_ft = ['ps1', 'ps1xml']
 #}}}
 
 # ============================================================
