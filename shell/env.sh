@@ -59,7 +59,12 @@ export DFDIR_NANO="$DOTFILESDIR/nano"
 export DFDIR_BASH="$DFDIR_SHELL/bash"
 export DFDIR_XDG="$DOTFILESDIR/xdg"
 
-export DISPLAY=localhost:0.0
+if [ ! $(uname -r | grep microsoft-standard) ]; then
+	export DISPLAY=localhost:0.0
+else
+	export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0.0
+	export LIBGL_ALWAYS_INDIRECT=1
+fi
 
 # export EDITOR=vim
 
