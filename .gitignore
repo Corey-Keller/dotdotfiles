@@ -19,8 +19,10 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # coc.nvim
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/xdg/config/coc/extensions/db.json
-/xdg/config/coc/extensions/package.json
+!/xdg/config/coc/extensions
+/xdg/config/coc/extensions/*
+!/xdg/config/coc/extensions/db.json
+!/xdg/config/coc/extensions/package.json
 /xdg/config/coc/mru
 
 # dein data files
