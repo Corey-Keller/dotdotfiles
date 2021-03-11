@@ -23,6 +23,7 @@
 /xdg/config/coc/extensions/*
 !/xdg/config/coc/extensions/db.json
 !/xdg/config/coc/extensions/package.json
+/xdg/config/coc/snippets-mru
 /xdg/config/coc/mru
 
 # dein data files
@@ -115,6 +116,9 @@ $RECYCLE.BIN/
 
 # NuGet cache directory
 xdg/data/NuGet
+
+# PowerShell command history
+xdg/data/powershell/PSReadLine/ConsoleHost_history.txt
 
 ### Zsh ###
 # Zsh cache directory

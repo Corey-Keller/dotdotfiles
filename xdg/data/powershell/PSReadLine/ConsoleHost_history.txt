@@ -1,4 +1,0 @@
-  exit
-  Get-ChildItem
-  ls
-  exit
