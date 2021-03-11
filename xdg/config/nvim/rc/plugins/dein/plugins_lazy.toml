@@ -3,7 +3,7 @@
 # Author: Corey Keller
 # Description: Lazily loaded plugins
 # Repository: https://github.com/Corey-Keller/dotdotfiles
-# Last Modified: 2020-02-13
+# Last Modified: 2020-07-22
 # License: Mozilla Public License 2.0
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -248,6 +248,14 @@ on_source = ['ultisnips', 'coc.nvim']
 # 	'<Plug>VSneakBackward', '<Plug>VSneakForward', '<Plug>VSneakNext',
 # 	'<Plug>VSneakPrevious']
 # } #}}}
+
+# :Subvert is a better :substitute
+[[plugins]]
+repo = 'tpope/vim-abolish'
+on_cmd = ['Abolish', 'S', 'Subvert']
+on_map = { #{{{
+	n = ['cr', '<Plug>(abolish-coerce)', '<Plug>(abolish-coerce-word)']
+} #}}}
 
 # Helpers for UNIX
 [[plugins]]
