@@ -64,7 +64,7 @@ snip.rv += ' Description: '`${2:Brief description of the files purpose.}
 snip.rv += snip.opt('g:snips_github', 'https://github.com/user')
 snip.rv += '/'`${3:repo}
 `!p snip.rv = get_comment_format()[0] + ' Last Modified: '
-snip.rv += datetime.now().strftime("%Y-%m-%d")`
+snip.rv += datetime.datetime.now().strftime("%Y-%m-%d")`
 `!p snip.rv = get_comment_format()[0] + ' License: '`${4:MPL2}$0
 `!p snip.rv = MkCharLineFullLen('=')`
 endsnippet
