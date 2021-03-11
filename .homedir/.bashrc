@@ -4,7 +4,7 @@
 # Author: Corey Keller
 # Description: Bash config
 # Repository: https://github.com/Corey-Keller/dotdotfiles
-# Last Modified: 2020-04-13
+# Last Modified: 2021-03-11
 # License: Mozilla Public License 2.0
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -21,3 +21,6 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\e[C": forward-char'
 bind '"\e[D": backward-char'
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] &&
+source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash

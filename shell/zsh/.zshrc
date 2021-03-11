@@ -1,3 +1,14 @@
+# =========================================================================
+# File: .zshrc
+# Author: Corey Keller
+# Description: Zsh config file
+# Repository: https://github.com/Corey-Keller/dotdotfiles
+# Last Modified: 2021-03-11
+# License: Mozilla Public License 2.0
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# =========================================================================
 (($VERBOSE_ZSH_STARTUP)) && echo 'loading $ZDOTDIR/.zshrc'
 local testLoadTime=0 # OFF == 1 and ON == >=1
 (($testLoadTime)) && zmodload zsh/zprof && zprof -c
@@ -46,7 +57,8 @@ done
 (($VERBOSE_ZSH_STARTUP)) && echo 'finished loading $ZDOTDIR/zshrc.d files'
 
 # Load 'fzf'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] &&
+source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
 
 # load local post config if it exists
 [ -s $HOME/.zshrc_post ] && . $HOME/.zshrc_post
