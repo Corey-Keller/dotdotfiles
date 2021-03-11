@@ -113,7 +113,13 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# NuGet cache directory
+xdg/data/NuGet
+
 ### Zsh ###
+# Zsh cache directory
+shell/zsh/.zcache/
+
 # Zsh compiled script + zrecompile backup
 *.zwc
 *.zwc.old
