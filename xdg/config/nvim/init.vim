@@ -3,7 +3,7 @@
 " Author: Corey Keller
 " Description: My (n)vimrc
 " Repository: https://github.com/Corey-Keller/dotdotfiles
-" Last Modified: 2020-02-13
+" Last Modified: 2021-04-30
 " License: Mozilla Public License 2.0
 " This Source Code Form is subject to the terms of the Mozilla Public
 " License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -41,6 +41,12 @@ endif "}}}
 " Set the vim config directory (user configuration files)
 if empty($VIMCONFIGDIR) "{{{
 	let $VIMCONFIGDIR = $XDG_CONFIG_HOME .'/nvim'
+endif "}}}
+
+" load the lua config instead if we have nvim >= 0.5
+if has('nvim-0.5') "{{{
+	lua require('init')
+	finish
 endif "}}}
 
 if has('vim_starting') "{{{
