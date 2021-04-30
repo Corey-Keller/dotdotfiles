@@ -45,8 +45,11 @@ endif "}}}
 
 " load the lua config instead if we have nvim >= 0.5
 if has('nvim-0.5') "{{{
-	lua require('init')
-	finish
+	if has('vim_starting') "{{{
+		set runtimepath^=$VIMDATADIR
+		set runtimepath^=$VIMCONFIGDIR
+		lua require('init')
+		finish
 endif "}}}
 
 if has('vim_starting') "{{{
