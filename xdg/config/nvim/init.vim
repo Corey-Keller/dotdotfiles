@@ -50,6 +50,7 @@ if has('nvim-0.5') "{{{
 		set runtimepath^=$VIMCONFIGDIR
 		lua require('init')
 		finish
+	endif "}}}
 endif "}}}
 
 if has('vim_starting') "{{{
