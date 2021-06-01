@@ -26,10 +26,11 @@ export SHAREDBINDIR="$SHAREDSOURCEDIR/bin"
 export GOBIN="$SHAREDBINDIR"
 export GOROOT_FINAL="$SHAREDSOURCEDIR/go"
 
-export DOTFILESDIR="$GHDIR/Corey-Keller/dotdotfiles"
-if [ -d "$DOTFILESDIR" ] && [ ! -d "$HOME/.dotfiles" ]; then
-	ln -s "$DOTFILESDIR" "$HOME/.dotfiles"
-fi
+export DOTFILESDIR="$HOME/.dotfiles"
+#export DOTFILESDIR="$GHDIR/Corey-Keller/dotdotfiles"
+#if [ -d "$DOTFILESDIR" ] && [ ! -d "$HOME/.dotfiles" ]; then
+#	ln -s "$DOTFILESDIR" "$HOME/.dotfiles"
+#fi
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # XDG Base Directories
