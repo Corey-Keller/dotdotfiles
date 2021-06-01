@@ -35,11 +35,13 @@ fi
 # XDG Base Directories
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Directory under which user specific data files should be stored.
-export XDG_DATA_HOME="$DOTFILESDIR/xdg/data"
+#export XDG_DATA_HOME="$DOTFILESDIR/xdg/data"
+export XDG_DATA_HOME="$HOME/.local/share"
 # Directories to search for data files in addition to $XDG_DATA_HOME
 export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 # Directory under which user specific configuration files should be stored.
-export XDG_CONFIG_HOME="$DOTFILESDIR/xdg/config"
+#export XDG_CONFIG_HOME="$DOTFILESDIR/xdg/config"
+export XDG_CONFIG_HOME="$HOME/.config"
 # Directories to search for configuration files in addition to
 # $XDG_CONFIG_HOME
 export XDG_CONFIG_DIRS="/etc/xdg"
@@ -48,7 +50,8 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 export XDG_CACHE_HOME="$HOME/.cache"
 # Directory under which user specific non-essential runtime files and other
 # file objects (such as sockets, named pipes, ...) should be stored.
-export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/dev/shm/user/$(id -u)}"
+#export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/dev/shm/user/$(id -u)}"
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Dotfiles Sub-Directories
