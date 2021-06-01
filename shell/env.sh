@@ -4,7 +4,7 @@
 # Author: Corey Keller
 # Description: This file is for shell agnostic environment variables
 # Repository: https://github.com/Corey-Keller/dotdotfiles
-# Last Modified: 2020-03-05
+# Last Modified: 2021-06-01
 # License: Mozilla Public License 2.0
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -59,9 +59,8 @@ export DFDIR_NANO="$DOTFILESDIR/nano"
 export DFDIR_BASH="$DFDIR_SHELL/bash"
 export DFDIR_XDG="$DOTFILESDIR/xdg"
 
-if [ ! $(uname -r | grep microsoft-standard) ]; then
-	export DISPLAY=localhost:0.0
-else
+# set this specialized $DISPLAY value only in WSL sessions
+if [ $(uname -r | grep microsoft-standard) ]; then
 	export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0.0
 	export LIBGL_ALWAYS_INDIRECT=1
 fi
