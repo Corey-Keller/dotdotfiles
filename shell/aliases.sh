@@ -35,7 +35,6 @@ alias visudo='sudo visudo'
 # ============================================================
 
 alias ls='ls -hAlF --group-directories-first --color=always'
-alias uptime='uptime -p'
 alias mkdir='mkdir -p'
 alias chown='chown -Rv'
 alias chmod='chmod -Rv'
